@@ -55,7 +55,8 @@ const caseStudies = {
     subtitle: 'City Government of Baguio — City Human Resource Management Office (CHRMO)',
     overview: 'A mission-critical attendance tracking and identity issuance system handling thousands of daily biometric clock-ins across municipal offices, paired with high-definition PVC employee badge and OJT ID generation.',
     images: [
-      { src: 'images/idmaker-studio.png', title: 'ID Maker Studio Canvas', desc: 'Front/back vector rendering with dynamic QR code & Mayor signature' },
+      { src: 'images/idmaker-harold.png', title: 'ID Maker Studio (Harold P. Mallorca • 7641)', desc: 'Official photo alignment, Wacom STU-540 digital signature capture & SFTP/HRIS synchronization' },
+      { src: 'images/zkteco-hologram.png', title: 'ZKTeco Biometrics — Hologram HUD (7641)', desc: 'MB560-VL terminal management with hand radar scan, 128-D facial AI mesh & holographic avatar' },
       { src: 'images/wacom-signature-bridge.png', title: 'Wacom STU-540 Bridge', desc: 'Live vector signature capture and contrast adjustment tool' },
       { src: 'images/biomsys-portal.png', title: 'BiomSys Web Portal', desc: 'Employee registration & document management portal interface' },
       { src: 'images/biomsys-masterlist.png', title: 'Masterlist Database', desc: 'Real-time newly registered table with administrative controls' }
