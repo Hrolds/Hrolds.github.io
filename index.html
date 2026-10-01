@@ -285,7 +285,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
         <!-- PROJECT 1: BiomSys & ID Maker Ecosystem -->
-        <article class="group rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-7 sm:p-9 shadow-xl hover:border-slate-700 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+        <article class="group rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 shadow-xl hover:border-slate-700 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
           <div class="absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl -z-10 group-hover:bg-brand-500/15 transition-all"></div>
 
           <div>
@@ -296,6 +296,39 @@
                 Biometric IoT & Identity Studio
               </span>
               <span class="text-xs font-mono text-slate-400">Production • Live</span>
+            </div>
+
+            <!-- Screenshot Preview Card -->
+            <div class="mb-6 rounded-2xl border border-slate-800/80 bg-slate-950/80 overflow-hidden relative group/img cursor-pointer shadow-lg" onclick="openLightbox('images/idmaker-studio.png', 'BiomSys ID Maker Studio — High-Resolution PVC ID Card Generator with Front/Back Preview & QR Verification')">
+              <div class="aspect-[16/10] overflow-hidden bg-slate-950 flex items-center justify-center">
+                <img id="biomsysMainImg" src="images/idmaker-studio.png" alt="BiomSys ID Maker Studio Interface" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-300">
+              </div>
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                <span class="px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-700 text-xs font-semibold text-white flex items-center gap-1.5 backdrop-blur-sm shadow-xl">
+                  <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-brand-400"></i>
+                  Click to Expand Screenshot
+                </span>
+              </div>
+              <div class="p-2.5 bg-slate-900/90 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                <span class="truncate">ID Maker Studio — PVC Card Canvas Engine</span>
+                <span class="text-brand-400 shrink-0 flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> 4 Views</span>
+              </div>
+            </div>
+
+            <!-- Thumbnail Strip -->
+            <div class="mb-6 grid grid-cols-4 gap-2">
+              <button type="button" onclick="switchPreview('biomsys', 'images/idmaker-studio.png', 'ID Maker Studio — PVC Card Canvas Engine'); event.stopPropagation();" class="rounded-lg border border-brand-500/60 overflow-hidden aspect-[16/10] bg-slate-950 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="ID Maker Studio">
+                <img src="images/idmaker-studio.png" alt="ID Maker" class="w-full h-full object-cover object-top">
+              </button>
+              <button type="button" onclick="switchPreview('biomsys', 'images/wacom-signature-bridge.png', 'Wacom STU-540 Tablet Signature Bridge'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="Wacom Signature Bridge">
+                <img src="images/wacom-signature-bridge.png" alt="Wacom Signature" class="w-full h-full object-cover object-center">
+              </button>
+              <button type="button" onclick="switchPreview('biomsys', 'images/biomsys-portal.png', 'BiomSys Employee Registration Portal'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="Registration Portal">
+                <img src="images/biomsys-portal.png" alt="Registration Portal" class="w-full h-full object-cover object-top">
+              </button>
+              <button type="button" onclick="switchPreview('biomsys', 'images/biomsys-masterlist.png', 'BiomSys Masterlist & Newly Registered Database'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="Masterlist Database">
+                <img src="images/biomsys-masterlist.png" alt="Masterlist Table" class="w-full h-full object-cover object-left-top">
+              </button>
             </div>
 
             <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-brand-300 transition-colors">
@@ -348,7 +381,7 @@
         </article>
 
         <!-- PROJECT 2: Job Order Management System -->
-        <article class="group rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-7 sm:p-9 shadow-xl hover:border-slate-700 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+        <article class="group rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 shadow-xl hover:border-slate-700 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
           <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -z-10 group-hover:bg-emerald-500/15 transition-all"></div>
 
           <div>
@@ -359,6 +392,33 @@
                 BaguioHRDirect Platform
               </span>
               <span class="text-xs font-mono text-slate-400">Production • Live</span>
+            </div>
+
+            <!-- Screenshot Preview Card -->
+            <div class="mb-6 rounded-2xl border border-slate-800/80 bg-slate-950/80 overflow-hidden relative group/img cursor-pointer shadow-lg" onclick="openLightbox('images/joborder-portal.png', 'Job Order Renewal Portal — Managing Position Classifications, Contract Evaluations & Planning')">
+              <div class="aspect-[16/10] overflow-hidden bg-slate-950 flex items-center justify-center">
+                <img id="joborderMainImg" src="images/joborder-portal.png" alt="Job Order Management Portal" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-300">
+              </div>
+              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                <span class="px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-700 text-xs font-semibold text-white flex items-center gap-1.5 backdrop-blur-sm shadow-xl">
+                  <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-emerald-400"></i>
+                  Click to Expand Screenshot
+                </span>
+              </div>
+              <div class="p-2.5 bg-slate-900/90 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                <span class="truncate">Job Order Portal — Contract Evaluation & Planning</span>
+                <span class="text-emerald-400 shrink-0 flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> 2 Views</span>
+              </div>
+            </div>
+
+            <!-- Thumbnail Strip -->
+            <div class="mb-6 grid grid-cols-4 gap-2">
+              <button type="button" onclick="switchPreview('joborder', 'images/joborder-portal.png', 'Job Order Portal — Contract Evaluation & Planning'); event.stopPropagation();" class="rounded-lg border border-emerald-500/60 overflow-hidden aspect-[16/10] bg-slate-950 hover:opacity-100 transition-all focus:ring-2 focus:ring-emerald-500" title="Job Order Renewal Portal">
+                <img src="images/joborder-portal.png" alt="Job Order Portal" class="w-full h-full object-cover object-top">
+              </button>
+              <button type="button" onclick="switchPreview('joborder', 'images/joborder-workflow.png', 'Baguio HR — Job Order Workflow & Approvals Navigation'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-emerald-500" title="Workflow & Approvals">
+                <img src="images/joborder-workflow.png" alt="Workflow Navigation" class="w-full h-full object-cover object-left-top">
+              </button>
             </div>
 
             <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-emerald-300 transition-colors">
@@ -610,6 +670,19 @@
       <!-- Dynamic Content Injection -->
       <div id="modalContent"></div>
 
+    </div>
+  </div>
+
+  <!-- Fullscreen Screenshot Lightbox Modal -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden opacity-0 transition-opacity duration-200 flex flex-col items-center justify-center p-4 sm:p-6" onclick="closeLightbox()">
+    <div class="relative max-w-5xl w-full flex flex-col items-center" onclick="event.stopPropagation()">
+      <button onclick="closeLightbox()" aria-label="Close image preview" class="absolute -top-12 right-0 sm:right-2 p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+      <div class="rounded-2xl border border-slate-700 bg-slate-900/90 overflow-hidden shadow-2xl max-h-[80vh] flex items-center justify-center">
+        <img id="lightboxImg" src="" alt="Full Preview" class="max-h-[78vh] w-auto object-contain">
+      </div>
+      <p id="lightboxCaption" class="mt-3 text-xs sm:text-sm font-mono text-slate-300 text-center bg-slate-900/80 px-4 py-1.5 rounded-full border border-slate-800 shadow"></p>
     </div>
   </div>
 

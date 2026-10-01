@@ -54,6 +54,12 @@ const caseStudies = {
     title: 'BiomSys & ID Maker Ecosystem',
     subtitle: 'City Government of Baguio — City Human Resource Management Office (CHRMO)',
     overview: 'A mission-critical attendance tracking and identity issuance system handling thousands of daily biometric clock-ins across municipal offices, paired with high-definition PVC employee badge and OJT ID generation.',
+    images: [
+      { src: 'images/idmaker-studio.png', title: 'ID Maker Studio Canvas', desc: 'Front/back vector rendering with dynamic QR code & Mayor signature' },
+      { src: 'images/wacom-signature-bridge.png', title: 'Wacom STU-540 Bridge', desc: 'Live vector signature capture and contrast adjustment tool' },
+      { src: 'images/biomsys-portal.png', title: 'BiomSys Web Portal', desc: 'Employee registration & document management portal interface' },
+      { src: 'images/biomsys-masterlist.png', title: 'Masterlist Database', desc: 'Real-time newly registered table with administrative controls' }
+    ],
     architecture: [
       {
         title: 'ZKTeco Hardware Socket Protocol',
@@ -84,6 +90,10 @@ const caseStudies = {
     title: 'Job Order Management System',
     subtitle: 'City Government of Baguio — Position Standardization & Tranche Review',
     overview: 'An administrative and financial governance platform built to standardize contractual positions, maintain Section 6.x duties & functions, and review compensation according to National Salary Tranches.',
+    images: [
+      { src: 'images/joborder-portal.png', title: 'Job Order Renewal Portal', desc: 'Position classifications, step grades, and renewal workflow table' },
+      { src: 'images/joborder-workflow.png', title: 'HR Workflow Navigation', desc: 'Multi-stage approval pipeline from department head to mayor' }
+    ],
     architecture: [
       {
         title: 'HRIS Data Audit & Deduplication Engine',
@@ -114,9 +124,81 @@ const modalBackdrop = document.getElementById('modalBackdrop');
 const modalBox = document.getElementById('modalBox');
 const modalContent = document.getElementById('modalContent');
 
+// --- 4. PREVIEW SWITCHER ON CARDS ---
+function switchPreview(project, imgPath, caption) {
+  const mainImg = document.getElementById(`${project}MainImg`);
+  if (mainImg) {
+    mainImg.src = imgPath;
+    mainImg.parentElement.parentElement.onclick = () => openLightbox(imgPath, caption);
+  }
+
+  // Update thumbnail active ring
+  const card = mainImg.closest('article');
+  if (card) {
+    const thumbs = card.querySelectorAll('button[onclick*="switchPreview"]');
+    thumbs.forEach(btn => {
+      if (btn.getAttribute('onclick').includes(imgPath)) {
+        btn.classList.add('border-brand-500', 'opacity-100');
+        btn.classList.remove('opacity-70', 'border-slate-800');
+      } else {
+        btn.classList.remove('border-brand-500', 'opacity-100');
+        btn.classList.add('opacity-70', 'border-slate-800');
+      }
+    });
+  }
+}
+
+// --- 5. LIGHTBOX MODAL LOGIC ---
+const lightboxModal = document.getElementById('lightboxModal');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCaption = document.getElementById('lightboxCaption');
+
+function openLightbox(imgPath, caption) {
+  if (!lightboxModal || !lightboxImg) return;
+  lightboxImg.src = imgPath;
+  if (lightboxCaption) {
+    lightboxCaption.textContent = caption || 'System Screenshot';
+  }
+  document.body.classList.add('modal-active');
+  lightboxModal.classList.remove('hidden');
+  setTimeout(() => {
+    lightboxModal.classList.remove('opacity-0');
+  }, 10);
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+}
+
+function closeLightbox() {
+  if (!lightboxModal) return;
+  lightboxModal.classList.add('opacity-0');
+  setTimeout(() => {
+    lightboxModal.classList.add('hidden');
+    if (!modalBackdrop || modalBackdrop.classList.contains('hidden')) {
+      document.body.classList.remove('modal-active');
+    }
+  }, 200);
+}
+
+// --- 6. CASE STUDY MODAL ---
 function openModal(projectId) {
   const data = caseStudies[projectId];
   if (!data) return;
+
+  const imagesHtml = data.images.map(img => `
+    <div class="rounded-xl border border-slate-800 bg-slate-950 overflow-hidden cursor-pointer group/modalimg shadow" onclick="openLightbox('${img.src}', '${img.title} — ${img.desc}')">
+      <div class="aspect-[16/10] overflow-hidden">
+        <img src="${img.src}" alt="${img.title}" class="w-full h-full object-cover object-top group-hover/modalimg:scale-105 transition-transform duration-300">
+      </div>
+      <div class="p-2.5 bg-slate-900/90 text-left">
+        <div class="text-xs font-bold text-white flex items-center justify-between">
+          <span>${img.title}</span>
+          <i data-lucide="zoom-in" class="w-3 h-3 text-brand-400"></i>
+        </div>
+        <p class="text-[11px] text-slate-400 leading-tight mt-0.5">${img.desc}</p>
+      </div>
+    </div>
+  `).join('');
 
   const archHtml = data.architecture.map(item => `
     <div class="p-4 rounded-xl border border-slate-800 bg-slate-950/70">
@@ -146,7 +228,18 @@ function openModal(projectId) {
         ${data.overview}
       </p>
 
+      <!-- System Screenshot Gallery in Modal -->
       <div class="mt-6">
+        <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+          <i data-lucide="image" class="w-3.5 h-3.5 text-brand-400"></i>
+          <span>Production Interface Screenshots (Click to Expand)</span>
+        </h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          ${imagesHtml}
+        </div>
+      </div>
+
+      <div class="mt-6 pt-6 border-t border-slate-800">
         <h4 class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-3">
           Architecture & Engineering Highlights
         </h4>
@@ -185,7 +278,9 @@ function closeModal() {
   modalBox.classList.add('scale-95');
   setTimeout(() => {
     modalBackdrop.classList.add('hidden');
-    document.body.classList.remove('modal-active');
+    if (!lightboxModal || lightboxModal.classList.contains('hidden')) {
+      document.body.classList.remove('modal-active');
+    }
   }, 200);
 }
 
@@ -199,7 +294,11 @@ if (modalBackdrop) {
 
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      closeModal();
+      if (lightboxModal && !lightboxModal.classList.contains('hidden')) {
+        closeLightbox();
+      } else {
+        closeModal();
+      }
     }
   });
 }
