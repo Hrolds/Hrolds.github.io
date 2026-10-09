@@ -53,7 +53,7 @@ const caseStudies = {
     images: [
       { src: 'images/idmaker-harold.png', title: 'ID Maker Studio (Harold P. Mallorca • 7641)', desc: 'Official photo alignment, Wacom STU-540 digital signature capture & SFTP/HRIS synchronization' },
       { src: 'images/zkteco-hologram.png', title: 'ZKTeco Biometrics — Hologram HUD (7641)', desc: 'MB560-VL terminal management with hand radar scan, 128-D facial AI mesh & holographic avatar' },
-      { src: 'images/biometric-reports-manager.png', title: 'Biometric Reports Manager', desc: 'Internal fleet control center tracking 44 municipal stations (D01–D43) with verification workflows' },
+      { src: 'images/biometric-reports-manager.png', title: 'Biometric Reports Manager', desc: 'Internal fleet control center tracking 44 municipal stations (D01–D43 + HR Master) with verification workflows' },
       { src: 'images/bio-registration-public.png', title: 'Public Personnel Registration Form', desc: 'Mobile-responsive citizen registration portal hosted live at bio-registration.web.app' },
       { src: 'images/biometric-incident-public.png', title: 'Public Incident Reporting Portal', desc: 'Field incident reporting form hosted live at biometric-incident-report.web.app' },
       { src: 'images/wacom-signature-bridge.png', title: 'Wacom STU-540 Tablet Bridge', desc: 'Live vector signature capture and contrast adjustment tool' },
@@ -73,8 +73,8 @@ const caseStudies = {
         desc: 'Published responsive citizen registration portal supporting all municipal appointment tracks (Job Order, Casual, Regular, Temporary, Coterminous, Internship) with dynamic document attachment validation and zero-LAN direct Supabase staging under Row-Level Security.'
       },
       {
-        title: 'Biometric Reports & 44-Terminal Fleet Manager (D01–D43)',
-        desc: 'Built the incident management pipeline pairing the public reporting portal (biometric-incident-report.web.app) with the internal Biometric Reports Manager. Tracks 44 city stations with strict numerical sorting (compareDeviceNames), incident triage (Pending/Verified/Rejected), and an automated HRMO letterhead print engine.'
+        title: 'Biometric Reports & 44-Station Municipal Fleet (D01–D43 + HR Station)',
+        desc: 'Built the incident management pipeline pairing the public reporting portal (biometric-incident-report.web.app) with the internal Biometric Reports Manager. Tracks 44 city stations (D01–D43 and HR Enrollment Center) with strict numerical sorting (compareDeviceNames), incident triage (Pending/Verified/Rejected), and an automated HRMO letterhead print engine.'
       }
     ],
     techStack: [
@@ -124,7 +124,8 @@ const caseStudies = {
     subtitle: 'City Government of Baguio — Men Opposed to VAW Everywhere Chapter',
     overview: 'An enterprise management information system and spreadsheet database sync engine designed for the Baguio City Chapter of MOVE (Men Opposed to Violence Against Women Everywhere), providing municipal workforce roster analysis, automated seminar cohort allocation, and membership governance.',
     images: [
-      { src: 'images/move-dashboard.png', title: 'MOVE Executive HRIS Dashboard', desc: 'Real-time KPI metrics, department distribution bars, demographic breakdown & training attendance' }
+      { src: 'images/move-dashboard.png', title: 'MOVE Executive HRIS Dashboard', desc: 'Real-time KPI metrics, department distribution bars, demographic breakdown & training attendance' },
+      { src: 'images/move-logo.png', title: 'MOVE Baguio Chapter Official Insignia', desc: 'Official chapter seal — Men Opposed to Violence Against Women Everywhere (City Government of Baguio)' }
     ],
     architecture: [
       {
@@ -137,7 +138,7 @@ const caseStudies = {
       },
       {
         title: 'Chapter Governance & Membership Dossiers',
-        desc: 'Maintains comprehensive organizational directories for the 2026 and 2025 Administrations (Presidency of Harold P. Mallorca), Standing Committees, Google Form intake survey integration, and verified member profiles.'
+        desc: 'Maintains comprehensive organizational directories for the 2026 Administration (Pres. Dan Ricky M. Ong) and 2025 Administration (Past Pres. Harold P. Mallorca), Standing Committees, Google Form intake survey integration, and verified member profiles.'
       },
       {
         title: 'Automated Attendance Tracking & Certificate Studio',
@@ -160,11 +161,18 @@ function switchPreview(project, imgPath, caption) {
   const mainImg = document.getElementById(`${project}MainImg`);
   if (mainImg) {
     mainImg.src = imgPath;
-    mainImg.parentElement.parentElement.onclick = () => openLightbox(imgPath, caption);
+    const previewContainer = mainImg.closest('.group\\/img') || mainImg.parentElement.parentElement;
+    if (previewContainer) {
+      previewContainer.onclick = () => openLightbox(imgPath, caption);
+      const captionEl = document.getElementById(`${project}Caption`) || previewContainer.querySelector('.truncate');
+      if (captionEl && caption) {
+        captionEl.textContent = caption;
+      }
+    }
   }
 
   // Update thumbnail active ring
-  const card = mainImg.closest('article');
+  const card = mainImg ? mainImg.closest('article') : null;
   if (card) {
     const thumbs = card.querySelectorAll('button[onclick*="switchPreview"]');
     thumbs.forEach(btn => {
