@@ -51,8 +51,8 @@ const caseStudies = {
     subtitle: 'City Government of Baguio — City Human Resource Management Office (CHRMO)',
     overview: 'A unified enterprise ecosystem combining high-definition municipal employee & OJT ID card issuance, low-level ZKTeco biometric timekeeping hardware integration, a public citizen registration portal (bio-registration.web.app), and city-wide biometric terminal incident reporting & fleet management (biometric-incident-report.web.app).',
     images: [
-      { src: 'images/idmaker-harold.png', title: 'ID Maker Studio (Harold P. Mallorca • 7641)', desc: 'Official photo alignment, Wacom STU-540 digital signature capture & SFTP/HRIS synchronization' },
-      { src: 'images/zkteco-hologram.png', title: 'ZKTeco Biometrics — Hologram HUD (7641)', desc: 'MB560-VL terminal management with hand radar scan, 128-D facial AI mesh & holographic avatar' },
+      { src: 'images/idmaker-harold.png', title: 'ID Maker Studio — Personnel ID & Signature Module', desc: 'Official photo alignment, Wacom STU-540 digital signature capture & SFTP/HRIS synchronization' },
+      { src: 'images/zkteco-hologram.png', title: 'ZKTeco Biometrics — Hologram HUD', desc: 'MB560-VL terminal management with hand radar scan, 128-D facial AI mesh & holographic avatar' },
       { src: 'images/biometric-reports-manager.png', title: 'Biometric Reports Manager', desc: 'Internal fleet control center tracking 44 municipal stations (D01–D43 + HR Master) with verification workflows' },
       { src: 'images/bio-registration-public.png', title: 'Public Personnel Registration Form', desc: 'Mobile-responsive citizen registration portal hosted live at bio-registration.web.app' },
       { src: 'images/biometric-incident-public.png', title: 'Public Incident Reporting Portal', desc: 'Field incident reporting form hosted live at biometric-incident-report.web.app' },
@@ -138,7 +138,7 @@ const caseStudies = {
       },
       {
         title: 'Chapter Governance & Membership Dossiers',
-        desc: 'Maintains comprehensive organizational directories for the 2026 Administration (Pres. Dan Ricky M. Ong) and 2025 Administration (Past Pres. Harold P. Mallorca), Standing Committees, Google Form intake survey integration, and verified member profiles.'
+        desc: 'Maintains comprehensive organizational directories for the 2026 Administration (Pres. Dan Ricky M. Ong) and 2025 Administration (Past Pres. Harold Mallorca), Standing Committees, Google Form intake survey integration, and verified member profiles.'
       },
       {
         title: 'Automated Attendance Tracking & Certificate Studio',
