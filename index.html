@@ -153,12 +153,12 @@
         <!-- Quick Proof Badges -->
         <div class="mt-12 pt-8 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-6">
           <div>
-            <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono">1,600+</div>
-            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-medium">Records Managed</div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono">4,600+</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-medium">Personnel Managed</div>
           </div>
           <div>
-            <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono">27</div>
-            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-medium">Offices Normalized</div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono">44 Stations</div>
+            <div class="text-xs text-slate-400 mt-1 uppercase tracking-wider font-medium">Biometric Terminals (D01–D43)</div>
           </div>
           <div>
             <div class="text-2xl sm:text-3xl font-extrabold text-white font-mono">Hardware</div>
@@ -281,195 +281,366 @@
         </p>
       </div>
 
-      <!-- Project Cards Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Projects Container -->
+      <div class="space-y-10">
 
-        <!-- PROJECT 1: BiomSys & ID Maker Ecosystem -->
-        <article class="group rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 shadow-xl hover:border-slate-700 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl -z-10 group-hover:bg-brand-500/15 transition-all"></div>
+        <!-- SYSTEM 1: BiomSys Registration System (Full-Width Flagship Showcase) -->
+        <article class="group rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-10 shadow-2xl hover:border-slate-700 transition-all duration-300 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl -z-10 group-hover:bg-brand-500/15 transition-all"></div>
 
-          <div>
-            <!-- Header Badges -->
-            <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
-              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-brand-500/10 border border-brand-500/30 text-brand-300 flex items-center gap-1.5">
-                <i data-lucide="fingerprint" class="w-3.5 h-3.5"></i>
-                Biometric IoT & Identity Studio
+          <!-- Header Badges -->
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-brand-500/15 border border-brand-500/40 text-brand-300 flex items-center gap-1.5 shadow-sm">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-brand-400"></i>
+                Flagship Municipal Ecosystem
               </span>
-              <span class="text-xs font-mono text-slate-400">Production • Live</span>
+              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-sky-500/10 border border-sky-500/30 text-sky-300 flex items-center gap-1.5">
+                <i data-lucide="fingerprint" class="w-3.5 h-3.5 text-sky-400"></i>
+                Biometric IoT & Hardware Bridges
+              </span>
             </div>
-
-            <!-- Screenshot Preview Card -->
-            <div class="mb-6 rounded-2xl border border-slate-800/80 bg-slate-950/80 overflow-hidden relative group/img cursor-pointer shadow-lg" onclick="openLightbox('images/idmaker-harold.png', 'ID Maker Studio — Official Employee Profile & Signature Studio (Harold P. Mallorca • 7641)')">
-              <div class="aspect-[16/10] overflow-hidden bg-slate-950 flex items-center justify-center">
-                <img id="biomsysMainImg" src="images/idmaker-harold.png" alt="ID Maker Studio — Harold P. Mallorca (7641)" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-300">
-              </div>
-              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                <span class="px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-700 text-xs font-semibold text-white flex items-center gap-1.5 backdrop-blur-sm shadow-xl">
-                  <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-brand-400"></i>
-                  Click to Expand Screenshot
-                </span>
-              </div>
-              <div class="p-2.5 bg-slate-900/90 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                <span class="truncate">ID Maker Studio — Harold P. Mallorca (7641)</span>
-                <span class="text-brand-400 shrink-0 flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> 4 Views</span>
-              </div>
-            </div>
-
-            <!-- Thumbnail Strip -->
-            <div class="mb-6 grid grid-cols-4 gap-2">
-              <button type="button" onclick="switchPreview('biomsys', 'images/idmaker-harold.png', 'ID Maker Studio — Official Employee Profile & Signature Studio (Harold P. Mallorca • 7641)'); event.stopPropagation();" class="rounded-lg border border-brand-500/60 overflow-hidden aspect-[16/10] bg-slate-950 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="ID Maker Studio (Harold P. Mallorca)">
-                <img src="images/idmaker-harold.png" alt="ID Maker Studio" class="w-full h-full object-cover object-top">
-              </button>
-              <button type="button" onclick="switchPreview('biomsys', 'images/zkteco-hologram.png', 'ZKTeco MB560-VL Biometrics — Hologram Facial & Hand Biometrics (Harold Mallorca • 7641)'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="ZKTeco Biometrics Hologram">
-                <img src="images/zkteco-hologram.png" alt="ZKTeco Hologram" class="w-full h-full object-cover object-top">
-              </button>
-              <button type="button" onclick="switchPreview('biomsys', 'images/wacom-signature-bridge.png', 'Wacom STU-540 Tablet Signature Bridge'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="Wacom Signature Bridge">
-                <img src="images/wacom-signature-bridge.png" alt="Wacom Signature" class="w-full h-full object-cover object-center">
-              </button>
-              <button type="button" onclick="switchPreview('biomsys', 'images/biomsys-masterlist.png', 'BiomSys Masterlist & Newly Registered Database Table'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="Masterlist Database">
-                <img src="images/biomsys-masterlist.png" alt="Masterlist Table" class="w-full h-full object-cover object-left-top">
-              </button>
-            </div>
-
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-brand-300 transition-colors">
-              BiomSys & ID Maker Ecosystem
-            </h3>
-
-            <p class="mt-3 text-slate-300 text-sm sm:text-base leading-relaxed">
-              Comprehensive biometric time & attendance engine, Daily Time Record (DTR) calculation platform, and automated PVC / OJT ID card design studio integrating physical hardware tablets and scanners.
-            </p>
-
-            <!-- Key Feature Bullet Points -->
-            <div class="mt-6 space-y-2.5 text-xs sm:text-sm text-slate-300">
-              <div class="flex items-start gap-2.5">
-                <i data-lucide="check-circle" class="w-4 h-4 text-brand-400 shrink-0 mt-0.5"></i>
-                <span><strong>ZKTeco Biometric Socket Daemon:</strong> Direct TCP/IP socket engine (<code class="text-brand-300">zk_reader.py</code>) pulling live punches and face recognition templates.</span>
-              </div>
-              <div class="flex items-start gap-2.5">
-                <i data-lucide="check-circle" class="w-4 h-4 text-brand-400 shrink-0 mt-0.5"></i>
-                <span><strong>Wacom STU-540 Tablet Bridge:</strong> Real-time digital signature capture with live dual-screen rendering directly onto LCD screen.</span>
-              </div>
-              <div class="flex items-start gap-2.5">
-                <i data-lucide="check-circle" class="w-4 h-4 text-brand-400 shrink-0 mt-0.5"></i>
-                <span><strong>High-Resolution ID Canvas:</strong> Vector SVG & HTML5 Canvas rendering for official City Hall PVC & OJT badges with dynamic barcodes and QR codes.</span>
-              </div>
-              <div class="flex items-start gap-2.5">
-                <i data-lucide="check-circle" class="w-4 h-4 text-brand-400 shrink-0 mt-0.5"></i>
-                <span><strong>Multi-Tier Sync:</strong> Automated synchronizer linking local SQL Server (<code class="text-brand-300">BiomSys_Masterlist</code>), Supabase storage, and SFTP endpoints.</span>
-              </div>
-            </div>
-
-            <!-- Tech Tags -->
-            <div class="mt-6 flex flex-wrap gap-2">
-              <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Node.js / Express</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Python Daemon</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">MS SQL Server</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Supabase</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Wacom SigCaptX</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">HTML5 Canvas</span>
-            </div>
+            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Production • Multi-Module Live
+            </span>
           </div>
 
-          <!-- Bottom Action -->
-          <div class="mt-8 pt-6 border-t border-slate-800/80 flex items-center justify-between">
-            <button onclick="openModal('biomsys')" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-brand-400 hover:text-brand-300 transition-colors">
-              <span>View Technical Case Study</span>
-              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-            </button>
-            <span class="text-xs text-slate-500 font-mono">CHRMO Ecosystem</span>
+          <!-- 2-Column Responsive Layout -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Left Col: Screenshot & Gallery (5 Cols) -->
+            <div class="lg:col-span-5">
+              <!-- Screenshot Preview Card -->
+              <div class="mb-4 rounded-2xl border border-slate-800/80 bg-slate-950/80 overflow-hidden relative group/img cursor-pointer shadow-lg" onclick="openLightbox('images/idmaker-harold.png', 'ID Maker Studio — Official Employee Profile & Signature Studio (Harold P. Mallorca • 7641)')">
+                <div class="aspect-[16/10] overflow-hidden bg-slate-950 flex items-center justify-center">
+                  <img id="biomsysMainImg" src="images/idmaker-harold.png" alt="BiomSys ID Maker Studio — Harold P. Mallorca (7641)" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-300">
+                </div>
+                <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                  <span class="px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-700 text-xs font-semibold text-white flex items-center gap-1.5 backdrop-blur-sm shadow-xl">
+                    <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-brand-400"></i>
+                    Click to Expand Screenshot
+                  </span>
+                </div>
+                <div class="p-2.5 bg-slate-900/90 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                  <span class="truncate">ID Maker Studio — Harold P. Mallorca (7641)</span>
+                  <span class="text-brand-400 shrink-0 flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> 6 Views</span>
+                </div>
+              </div>
+
+              <!-- 6-Thumbnail Strip -->
+              <div class="grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-3 gap-2">
+                <button type="button" onclick="switchPreview('biomsys', 'images/idmaker-harold.png', 'ID Maker Studio — Official Employee Profile & Signature Studio (Harold P. Mallorca • 7641)'); event.stopPropagation();" class="rounded-lg border border-brand-500/60 overflow-hidden aspect-[16/10] bg-slate-950 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="ID Maker Studio (Harold P. Mallorca)">
+                  <img src="images/idmaker-harold.png" alt="ID Maker Studio" class="w-full h-full object-cover object-top">
+                </button>
+                <button type="button" onclick="switchPreview('biomsys', 'images/zkteco-hologram.png', 'ZKTeco MB560-VL Biometrics — Hologram Facial & Hand Biometrics (Harold Mallorca • 7641)'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="ZKTeco Biometrics Hologram">
+                  <img src="images/zkteco-hologram.png" alt="ZKTeco Hologram" class="w-full h-full object-cover object-top">
+                </button>
+                <button type="button" onclick="switchPreview('biomsys', 'images/biometric-reports-manager.png', 'Biometric Reports Manager — 44 Municipal Stations Fleet Control (D01–D43)'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="Biometric Reports Manager (44 Stations)">
+                  <img src="images/biometric-reports-manager.png" alt="Reports Manager" class="w-full h-full object-cover object-top">
+                </button>
+                <button type="button" onclick="switchPreview('biomsys', 'images/bio-registration-public.png', 'Personnel Biometric Registration Form (bio-registration.web.app)'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="Registration Form (Public)">
+                  <img src="images/bio-registration-public.png" alt="Registration Form" class="w-full h-full object-cover object-top">
+                </button>
+                <button type="button" onclick="switchPreview('biomsys', 'images/biometric-incident-public.png', 'Biometric Incident Reporting Form (biometric-incident-report.web.app)'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="Incident Reporting (Public)">
+                  <img src="images/biometric-incident-public.png" alt="Incident Reports" class="w-full h-full object-cover object-top">
+                </button>
+                <button type="button" onclick="switchPreview('biomsys', 'images/wacom-signature-bridge.png', 'Wacom STU-540 Tablet Signature Bridge'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-brand-500" title="Wacom Signature Bridge">
+                  <img src="images/wacom-signature-bridge.png" alt="Wacom Signature" class="w-full h-full object-cover object-center">
+                </button>
+              </div>
+
+              <!-- Live Web App Links Strip -->
+              <div class="mt-5 p-4 rounded-xl border border-slate-800/90 bg-slate-950/90 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <div class="flex items-center gap-2 text-xs text-slate-300">
+                  <i data-lucide="globe" class="w-4 h-4 text-brand-400"></i>
+                  <span class="font-semibold">Public Cloud Portals:</span>
+                </div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <a href="https://bio-registration.web.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition-all">
+                    <span>Bio-Registration</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                  </a>
+                  <a href="https://biometric-incident-report.web.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-sky-500/10 hover:bg-sky-500/20 text-sky-300 border border-sky-500/30 transition-all">
+                    <span>Incident Reports</span>
+                    <i data-lucide="external-link" class="w-3 h-3"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Col: Architecture & Detailed Sub-Modules (7 Cols) -->
+            <div class="lg:col-span-7 flex flex-col justify-between h-full">
+              <div>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-brand-300 transition-colors">
+                  BiomSys Registration System
+                </h3>
+                <p class="text-xs font-mono text-brand-400 mt-1">City Government of Baguio — City Human Resource Management Office (CHRMO)</p>
+
+                <p class="mt-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+                  The primary municipal biometric timekeeping, identity issuance, and hardware terminal fleet management ecosystem for the City of Baguio. Built to bridge on-premises local SQL Server security with zero-LAN cloud staging and physical IoT hardware peripherals.
+                </p>
+
+                <!-- 4 Integrated Modules Grid -->
+                <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                  <div class="p-3.5 rounded-xl border border-slate-800/90 bg-slate-950/70">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <span class="w-2 h-2 rounded-full bg-brand-400"></span>
+                      <h4 class="text-xs font-bold text-white uppercase tracking-wider">1. ID System Suite</h4>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                      <strong>ID Regular:</strong> Employee badges with Wacom STU-540 signatures & SFTP sync.<br>
+                      <strong>OJT ID:</strong> Trainee lifecycle with 5-tier fuzzy matching for emergency contacts.<br>
+                      <strong>Design & PVC:</strong> 8-point interactive layout editor (<code class="text-brand-300">layout.json</code>) & dual-side PVC cards.
+                    </p>
+                  </div>
+
+                  <div class="p-3.5 rounded-xl border border-slate-800/90 bg-slate-950/70">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+                      <h4 class="text-xs font-bold text-white uppercase tracking-wider">2. ZKTeco Terminal IoT</h4>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                      Direct TCP/IP socket daemon (port 4370) pulling <strong>1,970+ users in 1.27s</strong>.<br>
+                      128-D Visible Light Facial AI mesh & SilkID 10-slot fingerprint radar matrix.<br>
+                      Device flash user photo sync (<code class="text-sky-300">0x271A / 0x2719</code>).
+                    </p>
+                  </div>
+
+                  <div class="p-3.5 rounded-xl border border-slate-800/90 bg-slate-950/70">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                      <h4 class="text-xs font-bold text-white uppercase tracking-wider">3. Biometric Registration</h4>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                      <strong>Internal Core:</strong> Canonical LAN SQL Server Masterlist with pull-and-delete sync.<br>
+                      <strong>Public Portal:</strong> <a href="https://bio-registration.web.app/" target="_blank" class="text-emerald-400 hover:underline">bio-registration.web.app</a> wizard with appointment attachment rules & Supabase RLS.
+                    </p>
+                  </div>
+
+                  <div class="p-3.5 rounded-xl border border-slate-800/90 bg-slate-950/70">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                      <h4 class="text-xs font-bold text-white uppercase tracking-wider">4. Reports & Fleet Manager</h4>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                      <strong>44-Terminal Fleet (D01–D43):</strong> City Hall, district clinics & external offices.<br>
+                      <strong>Public Form:</strong> <a href="https://biometric-incident-report.web.app/" target="_blank" class="text-amber-400 hover:underline">biometric-incident-report.web.app</a>.<br>
+                      <strong>Management Engine:</strong> Verification workflows & official HRMO letterhead print engine.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Tech Tags -->
+                <div class="mt-6 flex flex-wrap gap-2">
+                  <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Node.js / Express</span>
+                  <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Python Daemon (PyZK)</span>
+                  <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">MS SQL Server</span>
+                  <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Supabase RLS</span>
+                  <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Firebase Hosting</span>
+                  <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Wacom SigCaptX</span>
+                  <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">SFTP Pool</span>
+                </div>
+              </div>
+
+              <!-- Bottom Action -->
+              <div class="mt-8 pt-6 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-4">
+                <button onclick="openModal('biomsys')" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-500/15 hover:bg-brand-500/25 border border-brand-500/40 text-xs font-bold uppercase tracking-wider text-brand-300 hover:text-white transition-all shadow-md">
+                  <span>View BiomSys Technical Case Study</span>
+                  <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                </button>
+                <span class="text-xs text-slate-400 font-mono">CHRMO Primary Platform</span>
+              </div>
+            </div>
+
           </div>
         </article>
 
-        <!-- PROJECT 2: Job Order Management System -->
-        <article class="group rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 shadow-xl hover:border-slate-700 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -z-10 group-hover:bg-emerald-500/15 transition-all"></div>
+        <!-- 2-COLUMN GRID: Job Order System & MOVE HRIS Platform -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-          <div>
-            <!-- Header Badges -->
-            <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
-              <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 flex items-center gap-1.5">
-                <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
-                BaguioHRDirect Platform
-              </span>
-              <span class="text-xs font-mono text-slate-400">Production • Live</span>
+          <!-- SYSTEM 2: Job Order Management System -->
+          <article class="group rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 shadow-xl hover:border-slate-700 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -z-10 group-hover:bg-emerald-500/15 transition-all"></div>
+
+            <div>
+              <!-- Header Badges -->
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 flex items-center gap-1.5">
+                  <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
+                  BaguioHRDirect Platform
+                </span>
+                <a href="https://jo-classification.web.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40 transition-all">
+                  <span>Live App</span>
+                  <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+              </div>
+
+              <!-- Screenshot Preview Card -->
+              <div class="mb-6 rounded-2xl border border-slate-800/80 bg-slate-950/80 overflow-hidden relative group/img cursor-pointer shadow-lg" onclick="openLightbox('images/joborder-portal.png', 'Job Order Renewal Portal — Managing Position Classifications, Contract Evaluations & Planning')">
+                <div class="aspect-[16/10] overflow-hidden bg-slate-950 flex items-center justify-center">
+                  <img id="joborderMainImg" src="images/joborder-portal.png" alt="Job Order Management Portal" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-300">
+                </div>
+                <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                  <span class="px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-700 text-xs font-semibold text-white flex items-center gap-1.5 backdrop-blur-sm shadow-xl">
+                    <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-emerald-400"></i>
+                    Click to Expand Screenshot
+                  </span>
+                </div>
+                <div class="p-2.5 bg-slate-900/90 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                  <span class="truncate">Job Order Portal — Contract Evaluation & Planning</span>
+                  <span class="text-emerald-400 shrink-0 flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> 2 Views</span>
+                </div>
+              </div>
+
+              <!-- Thumbnail Strip -->
+              <div class="mb-6 grid grid-cols-4 gap-2">
+                <button type="button" onclick="switchPreview('joborder', 'images/joborder-portal.png', 'Job Order Portal — Contract Evaluation & Planning'); event.stopPropagation();" class="rounded-lg border border-emerald-500/60 overflow-hidden aspect-[16/10] bg-slate-950 hover:opacity-100 transition-all focus:ring-2 focus:ring-emerald-500" title="Job Order Renewal Portal">
+                  <img src="images/joborder-portal.png" alt="Job Order Portal" class="w-full h-full object-cover object-top">
+                </button>
+                <button type="button" onclick="switchPreview('joborder', 'images/joborder-workflow.png', 'Baguio HR — Job Order Workflow & Approvals Navigation'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-emerald-500" title="Workflow & Approvals">
+                  <img src="images/joborder-workflow.png" alt="Workflow Navigation" class="w-full h-full object-cover object-left-top">
+                </button>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-emerald-300 transition-colors">
+                Job Order Management System
+              </h3>
+
+              <p class="mt-3 text-slate-300 text-sm sm:text-base leading-relaxed">
+                Standardized position classification, Contract of Service (Section 6.x) duties editing, and financial salary tranche rate review system for Baguio City government contractual personnel. Live at <a href="https://jo-classification.web.app/" target="_blank" class="text-emerald-400 hover:underline">jo-classification.web.app</a>.
+              </p>
+
+              <!-- Key Feature Bullet Points -->
+              <div class="mt-6 space-y-2.5 text-xs sm:text-sm text-slate-300">
+                <div class="flex items-start gap-2.5">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                  <span><strong>HRIS Normalization:</strong> Processed 1,689 active records across 27 city offices into 354 standardized composite profiles.</span>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                  <span><strong>Duties Editor (6.x):</strong> Admin portal with auto-decimal indexing (<code class="text-emerald-300">6.1, 6.2...</code>) and optimistic version locking.</span>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                  <span><strong>Salary Tranche Analytics:</strong> Automated compensation evaluation against 2025/2026 Tranches with +20% premiums.</span>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                  <span><strong>Dual-Mode Cloud Sync:</strong> Bi-directional synchronization binding Google Cloud Firestore with on-premises SQL Server.</span>
+                </div>
+              </div>
+
+              <!-- Tech Tags -->
+              <div class="mt-6 flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Google Firebase</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Cloud Firestore</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Node.js API</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">MS SQL Server</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Optimistic Locking</span>
+              </div>
             </div>
 
-            <!-- Screenshot Preview Card -->
-            <div class="mb-6 rounded-2xl border border-slate-800/80 bg-slate-950/80 overflow-hidden relative group/img cursor-pointer shadow-lg" onclick="openLightbox('images/joborder-portal.png', 'Job Order Renewal Portal — Managing Position Classifications, Contract Evaluations & Planning')">
-              <div class="aspect-[16/10] overflow-hidden bg-slate-950 flex items-center justify-center">
-                <img id="joborderMainImg" src="images/joborder-portal.png" alt="Job Order Management Portal" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-300">
-              </div>
-              <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                <span class="px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-700 text-xs font-semibold text-white flex items-center gap-1.5 backdrop-blur-sm shadow-xl">
-                  <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-emerald-400"></i>
-                  Click to Expand Screenshot
+            <!-- Bottom Action -->
+            <div class="mt-8 pt-6 border-t border-slate-800/80 flex items-center justify-between">
+              <button onclick="openModal('joborder')" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 hover:text-emerald-300 transition-colors">
+                <span>View Technical Case Study</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              </button>
+              <span class="text-xs text-slate-500 font-mono">HRDirect Portal</span>
+            </div>
+          </article>
+
+          <!-- SYSTEM 3: MOVE HRIS Management Information System -->
+          <article class="group rounded-3xl border border-slate-800 bg-gradient-to-b from-slate-900/90 to-slate-950 p-6 sm:p-8 shadow-xl hover:border-slate-700 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl -z-10 group-hover:bg-amber-500/15 transition-all"></div>
+
+            <div>
+              <!-- Header Badges -->
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-5">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 border border-amber-500/30 text-amber-300 flex items-center gap-1.5">
+                  <i data-lucide="users" class="w-3.5 h-3.5 text-amber-400"></i>
+                  Advocacy Chapter HRIS
+                </span>
+                <span class="px-3 py-1 rounded-full text-xs font-mono bg-amber-500/15 text-amber-300 border border-amber-500/30 flex items-center gap-1.5">
+                  <i data-lucide="clock" class="w-3 h-3 text-amber-400"></i>
+                  In Development
                 </span>
               </div>
-              <div class="p-2.5 bg-slate-900/90 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                <span class="truncate">Job Order Portal — Contract Evaluation & Planning</span>
-                <span class="text-emerald-400 shrink-0 flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> 2 Views</span>
+
+              <!-- Screenshot Preview Card -->
+              <div class="mb-6 rounded-2xl border border-slate-800/80 bg-slate-950/80 overflow-hidden relative group/img cursor-pointer shadow-lg" onclick="openLightbox('images/move-dashboard.png', 'M.O.V.E. Baguio Chapter — Executive Management Information System & Dashboard')">
+                <div class="aspect-[16/10] overflow-hidden bg-slate-950 flex items-center justify-center">
+                  <img id="moveMainImg" src="images/move-dashboard.png" alt="MOVE HRIS Dashboard" class="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-300">
+                </div>
+                <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                  <span class="px-3 py-1.5 rounded-lg bg-slate-900/90 border border-slate-700 text-xs font-semibold text-white flex items-center gap-1.5 backdrop-blur-sm shadow-xl">
+                    <i data-lucide="zoom-in" class="w-3.5 h-3.5 text-amber-400"></i>
+                    Click to Expand Screenshot
+                  </span>
+                </div>
+                <div class="p-2.5 bg-slate-900/90 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400 font-mono">
+                  <span class="truncate">MOVE Executive HRIS Dashboard</span>
+                  <span class="text-amber-400 shrink-0 flex items-center gap-1"><i data-lucide="image" class="w-3 h-3"></i> 1 View</span>
+                </div>
+              </div>
+
+              <!-- Thumbnail Strip -->
+              <div class="mb-6 grid grid-cols-4 gap-2">
+                <button type="button" onclick="switchPreview('move', 'images/move-dashboard.png', 'M.O.V.E. Baguio Chapter — Executive Management Information System & Dashboard'); event.stopPropagation();" class="rounded-lg border border-amber-500/60 overflow-hidden aspect-[16/10] bg-slate-950 hover:opacity-100 transition-all focus:ring-2 focus:ring-amber-500" title="MOVE Executive Dashboard">
+                  <img src="images/move-dashboard.png" alt="MOVE Dashboard" class="w-full h-full object-cover object-top">
+                </button>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-amber-300 transition-colors">
+                M.O.V.E. Baguio Chapter HRIS
+              </h3>
+
+              <p class="mt-3 text-slate-300 text-sm sm:text-base leading-relaxed">
+                Management Information System for <strong>Men Opposed to Violence Against Women Everywhere (MOVE)</strong> — City Government of Baguio Chapter. Features multi-sheet Excel sync and balanced cohort training selection.
+              </p>
+
+              <!-- Key Feature Bullet Points -->
+              <div class="mt-6 space-y-2.5 text-xs sm:text-sm text-slate-300">
+                <div class="flex items-start gap-2.5">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+                  <span><strong>Master SpreadsheetML Engine:</strong> Synchronizes 7 dedicated worksheets across a 748+ municipal personnel roster.</span>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+                  <span><strong>50-Participant Quota Selector:</strong> Algorithmic balanced cohort selector distributing training quotas across 23 municipal offices.</span>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+                  <span><strong>Chapter Governance Roster:</strong> Comprehensive dossiers for 2026/2025 leadership (Presidency of Harold P. Mallorca) & committees.</span>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <i data-lucide="check-circle" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i>
+                  <span><strong>Attendance & Certificate Studio:</strong> Real-time training attendance tracking (94.5% verified rate) with instant certificate generation.</span>
+                </div>
+              </div>
+
+              <!-- Tech Tags -->
+              <div class="mt-6 flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">HTML5 / Tailwind</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">SheetJS (xlsx)</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">SpreadsheetML Sync</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Interactive Analytics</span>
+                <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Python Server</span>
               </div>
             </div>
 
-            <!-- Thumbnail Strip -->
-            <div class="mb-6 grid grid-cols-4 gap-2">
-              <button type="button" onclick="switchPreview('joborder', 'images/joborder-portal.png', 'Job Order Portal — Contract Evaluation & Planning'); event.stopPropagation();" class="rounded-lg border border-emerald-500/60 overflow-hidden aspect-[16/10] bg-slate-950 hover:opacity-100 transition-all focus:ring-2 focus:ring-emerald-500" title="Job Order Renewal Portal">
-                <img src="images/joborder-portal.png" alt="Job Order Portal" class="w-full h-full object-cover object-top">
+            <!-- Bottom Action -->
+            <div class="mt-8 pt-6 border-t border-slate-800/80 flex items-center justify-between">
+              <button onclick="openModal('move')" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-400 hover:text-amber-300 transition-colors">
+                <span>View Architecture Deep-Dive</span>
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
               </button>
-              <button type="button" onclick="switchPreview('joborder', 'images/joborder-workflow.png', 'Baguio HR — Job Order Workflow & Approvals Navigation'); event.stopPropagation();" class="rounded-lg border border-slate-800 hover:border-slate-600 overflow-hidden aspect-[16/10] bg-slate-950 opacity-70 hover:opacity-100 transition-all focus:ring-2 focus:ring-emerald-500" title="Workflow & Approvals">
-                <img src="images/joborder-workflow.png" alt="Workflow Navigation" class="w-full h-full object-cover object-left-top">
-              </button>
+              <span class="text-xs text-slate-500 font-mono">MOVE Baguio Chapter</span>
             </div>
+          </article>
 
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight group-hover:text-emerald-300 transition-colors">
-              Job Order Management System
-            </h3>
-
-            <p class="mt-3 text-slate-300 text-sm sm:text-base leading-relaxed">
-              Standardized position classification, Contract of Service (Section 6.x) duties editing, and financial salary tranche rate review system for Baguio City government contractual personnel.
-            </p>
-
-            <!-- Key Feature Bullet Points -->
-            <div class="mt-6 space-y-2.5 text-xs sm:text-sm text-slate-300">
-              <div class="flex items-start gap-2.5">
-                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
-                <span><strong>HRIS Extraction & Normalization:</strong> Processed 1,689 active records across 27 city offices into 354 standardized composite profiles.</span>
-              </div>
-              <div class="flex items-start gap-2.5">
-                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
-                <span><strong>Contract of Service (6.x) Duty Editor:</strong> Dynamic admin portal with auto-decimal indexing (<code class="text-emerald-300">6.1, 6.2...</code>) and optimistic version locking.</span>
-              </div>
-              <div class="flex items-start gap-2.5">
-                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
-                <span><strong>Salary Tranche Analytics:</strong> Automated compensation evaluation against 2025 2nd & 2026 3rd Tranche schedules with daily rates & +20% premiums.</span>
-              </div>
-              <div class="flex items-start gap-2.5">
-                <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
-                <span><strong>Dual-Mode Cloud Sync Engine:</strong> Bi-directional synchronization (<code class="text-emerald-300">sync-cloud.js</code>) binding Google Cloud Firestore with on-premises SQL Server.</span>
-              </div>
-            </div>
-
-            <!-- Tech Tags -->
-            <div class="mt-6 flex flex-wrap gap-2">
-              <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Google Firebase</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Cloud Firestore</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Node.js API</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">MS SQL Server</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Firebase Auth & Rules</span>
-              <span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800/80 text-slate-300 border border-slate-700/60">Optimistic Locking</span>
-            </div>
-          </div>
-
-          <!-- Bottom Action -->
-          <div class="mt-8 pt-6 border-t border-slate-800/80 flex items-center justify-between">
-            <button onclick="openModal('joborder')" class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400 hover:text-emerald-300 transition-colors">
-              <span>View Technical Case Study</span>
-              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-            </button>
-            <span class="text-xs text-slate-500 font-mono">HRDirect Portal</span>
-          </div>
-        </article>
-
+        </div>
       </div>
     </section>
 

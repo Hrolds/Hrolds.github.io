@@ -7,16 +7,12 @@
 const themeToggle = document.getElementById('themeToggle');
 const htmlEl = document.documentElement;
 
-// Initialize theme from localStorage or system preference
+// Initialize theme from localStorage or default to dark
 const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-  if (savedTheme === 'light') {
-    htmlEl.classList.remove('dark');
-  } else {
-    htmlEl.classList.add('dark');
-  }
-} else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+if (savedTheme === 'light') {
   htmlEl.classList.remove('dark');
+} else {
+  htmlEl.classList.add('dark');
 }
 
 // Toggle theme on click
@@ -50,47 +46,49 @@ if (mobileMenuBtn && mobileMenu) {
 // --- 3. CASE STUDY DATA & MODAL LOGIC ---
 const caseStudies = {
   biomsys: {
-    badge: 'Biometric IoT & Identity Studio',
-    title: 'BiomSys & ID Maker Ecosystem',
+    badge: 'Flagship Municipal Ecosystem • Live',
+    title: 'BiomSys Registration System',
     subtitle: 'City Government of Baguio — City Human Resource Management Office (CHRMO)',
-    overview: 'A mission-critical attendance tracking and identity issuance system handling thousands of daily biometric clock-ins across municipal offices, paired with high-definition PVC employee badge and OJT ID generation.',
+    overview: 'A unified enterprise ecosystem combining high-definition municipal employee & OJT ID card issuance, low-level ZKTeco biometric timekeeping hardware integration, a public citizen registration portal (bio-registration.web.app), and city-wide biometric terminal incident reporting & fleet management (biometric-incident-report.web.app).',
     images: [
       { src: 'images/idmaker-harold.png', title: 'ID Maker Studio (Harold P. Mallorca • 7641)', desc: 'Official photo alignment, Wacom STU-540 digital signature capture & SFTP/HRIS synchronization' },
       { src: 'images/zkteco-hologram.png', title: 'ZKTeco Biometrics — Hologram HUD (7641)', desc: 'MB560-VL terminal management with hand radar scan, 128-D facial AI mesh & holographic avatar' },
-      { src: 'images/wacom-signature-bridge.png', title: 'Wacom STU-540 Bridge', desc: 'Live vector signature capture and contrast adjustment tool' },
-      { src: 'images/biomsys-portal.png', title: 'BiomSys Web Portal', desc: 'Employee registration & document management portal interface' },
-      { src: 'images/biomsys-masterlist.png', title: 'Masterlist Database', desc: 'Real-time newly registered table with administrative controls' }
+      { src: 'images/biometric-reports-manager.png', title: 'Biometric Reports Manager', desc: 'Internal fleet control center tracking 44 municipal stations (D01–D43) with verification workflows' },
+      { src: 'images/bio-registration-public.png', title: 'Public Personnel Registration Form', desc: 'Mobile-responsive citizen registration portal hosted live at bio-registration.web.app' },
+      { src: 'images/biometric-incident-public.png', title: 'Public Incident Reporting Portal', desc: 'Field incident reporting form hosted live at biometric-incident-report.web.app' },
+      { src: 'images/wacom-signature-bridge.png', title: 'Wacom STU-540 Tablet Bridge', desc: 'Live vector signature capture and contrast adjustment tool' },
+      { src: 'images/biomsys-masterlist.png', title: 'Masterlist Database', desc: 'Canonical SQL Server Newly Registered table with administrative controls' }
     ],
     architecture: [
       {
-        title: 'ZKTeco Hardware Socket Protocol',
-        desc: 'Built a specialized background Python daemon (zk_reader.py) using low-level TCP/IP sockets to interact with biometric timeclocks. It pulls punch records in real time, manages user enrollments, and extracts facial recognition templates directly from device memory.'
+        title: 'ID System Suite (Regular, OJT, Design & PVC)',
+        desc: 'Engineered a modular identification studio comprising: (1) Regular Employee ID generator with Wacom STU-540 signature capture, (2) OJT ID subsystem featuring 5-tier intelligent fuzzy matching against citizen registrations to resolve emergency contacts, (3) Interactive 8-point visual layout format editor (layout.json), and (4) Dual-sided PVC canvas renderer with dynamic QR code verification.'
       },
       {
-        title: 'Wacom STU-540 Signature Tablet Bridge',
-        desc: 'Implemented custom client-side integration using the Wacom SigCaptX SDK. Enables simultaneous live preview rendering on the LCD tablet screen while transmitting biometric stroke vector coordinates to HTML5 Canvas.'
+        title: 'ZKTeco MB560-VL Biometric Socket Daemon (PyZK)',
+        desc: 'Engineered a low-level TCP/IP socket daemon (port 4370) with a single-socket concurrency controller. Synchronizes 1,970+ users in 1.27 seconds via hardware register polling, processes 128-D Visible Light Facial AI templates, and manages SilkID 10-slot optical fingerprint scans.'
       },
       {
-        title: 'Automated PVC & OJT ID Printing Pipeline',
-        desc: 'A canvas-based graphics rendering engine that automates dynamic barcode, QR code, and photo composition. Produces print-ready 300+ DPI vector graphics for front-and-back PVC badges and temporary OJT identification.'
+        title: 'Public Registration Portal (bio-registration.web.app)',
+        desc: 'Published responsive citizen registration portal supporting all municipal appointment tracks (Job Order, Casual, Regular, Temporary, Coterminous, Internship) with dynamic document attachment validation and zero-LAN direct Supabase staging under Row-Level Security.'
       },
       {
-        title: 'Multi-Tier Cloud & SFTP Synchronization',
-        desc: 'Orchestrates bidirectional data movement across on-premises Microsoft SQL Server (BiomSys_Masterlist), cloud Supabase storage buckets, and secure SFTP file repositories for automated employee face photo and signature cataloging.'
+        title: 'Biometric Reports & 44-Terminal Fleet Manager (D01–D43)',
+        desc: 'Built the incident management pipeline pairing the public reporting portal (biometric-incident-report.web.app) with the internal Biometric Reports Manager. Tracks 44 city stations with strict numerical sorting (compareDeviceNames), incident triage (Pending/Verified/Rejected), and an automated HRMO letterhead print engine.'
       }
     ],
     techStack: [
-      'Node.js', 'Express', 'Python Daemon', 'Microsoft SQL Server', 
-      'Supabase (PostgreSQL & Storage)', 'Wacom SigCaptX SDK', 'ZKTeco Protocol', 
-      'HTML5 Canvas', 'SVG', 'REST APIs', 'SFTP'
+      'Node.js', 'Express', 'Python Daemon (PyZK)', 'Microsoft SQL Server', 
+      'Supabase (PostgreSQL & Storage)', 'Firebase Hosting', 'Cloud Firestore',
+      'Wacom SigCaptX SDK', 'HTML5 Canvas', 'SVG', 'SFTP Connection Pool', 'PDF.js'
     ]
   },
 
   joborder: {
-    badge: 'BaguioHRDirect Platform',
+    badge: 'BaguioHRDirect Platform • Live',
     title: 'Job Order Management System',
     subtitle: 'City Government of Baguio — Position Standardization & Tranche Review',
-    overview: 'An administrative and financial governance platform built to standardize contractual positions, maintain Section 6.x duties & functions, and review compensation according to National Salary Tranches.',
+    overview: 'An administrative and financial governance platform built to standardize contractual positions, maintain Section 6.x duties & functions, and review compensation according to National Salary Tranches. Live in production at jo-classification.web.app.',
     images: [
       { src: 'images/joborder-portal.png', title: 'Job Order Renewal Portal', desc: 'Position classifications, step grades, and renewal workflow table' },
       { src: 'images/joborder-workflow.png', title: 'HR Workflow Navigation', desc: 'Multi-stage approval pipeline from department head to mayor' }
@@ -117,6 +115,38 @@ const caseStudies = {
       'Google Firebase', 'Cloud Firestore', 'Node.js', 
       'Microsoft SQL Server', 'Firebase Authentication', 
       'Firebase Security Rules', 'Optimistic Locking', 'REST APIs'
+    ]
+  },
+
+  move: {
+    badge: 'Advocacy Chapter HRIS • In Development',
+    title: 'M.O.V.E. Baguio Chapter HRIS Platform',
+    subtitle: 'City Government of Baguio — Men Opposed to VAW Everywhere Chapter',
+    overview: 'An enterprise management information system and spreadsheet database sync engine designed for the Baguio City Chapter of MOVE (Men Opposed to Violence Against Women Everywhere), providing municipal workforce roster analysis, automated seminar cohort allocation, and membership governance.',
+    images: [
+      { src: 'images/move-dashboard.png', title: 'MOVE Executive HRIS Dashboard', desc: 'Real-time KPI metrics, department distribution bars, demographic breakdown & training attendance' }
+    ],
+    architecture: [
+      {
+        title: 'Master SpreadsheetML Excel Sync Architecture',
+        desc: 'Built a local multi-sheet Excel database engine synchronizing 7 dedicated worksheets (Permanent: 506, Casual: 275, Officers: 17, Committees: 15, Selected Participants: 51, Office Summary: 19, Members: 51) across 748+ municipal male personnel.'
+      },
+      {
+        title: '50-Participant Departmental Quota Engine',
+        desc: 'Engineered an algorithmic participant selector balancing quotas across all 23 municipal offices for anti-VAWC capacity training seminars, preferring age brackets (30–40) and ensuring proportional representation.'
+      },
+      {
+        title: 'Chapter Governance & Membership Dossiers',
+        desc: 'Maintains comprehensive organizational directories for the 2026 and 2025 Administrations (Presidency of Harold P. Mallorca), Standing Committees, Google Form intake survey integration, and verified member profiles.'
+      },
+      {
+        title: 'Automated Attendance Tracking & Certificate Studio',
+        desc: 'Tracks real-time seminar attendance (94.5% verified rate) with built-in certificate generation tools and instant Excel export workflows.'
+      }
+    ],
+    techStack: [
+      'HTML5', 'Tailwind CSS', 'JavaScript (ES6+)', 'SheetJS (xlsx)', 
+      'Python Sync Server', 'Microsoft Excel SpreadsheetML', 'Interactive Analytics', 'FontAwesome'
     ]
   }
 };

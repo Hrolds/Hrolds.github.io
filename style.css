@@ -36,12 +36,18 @@ html:not(.dark) #hero p {
   color: #475569;
 }
 
+html:not(.dark) #hero .font-mono,
+html:not(.dark) #hero strong {
+  color: #0f172a !important;
+}
+
 html:not(.dark) article {
   background: linear-gradient(to bottom, #ffffff, #f1f5f9);
   border-color: #e2e8f0;
 }
 
-html:not(.dark) article h3 {
+html:not(.dark) article h3,
+html:not(.dark) article h4 {
   color: #0f172a;
 }
 
