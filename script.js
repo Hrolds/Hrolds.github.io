@@ -1,5 +1,5 @@
 /**
- * Harold Mallorca — Developer Portfolio Scripts
+ * Harold P. Mallorca — Developer Portfolio Scripts
  * Handles Dark/Light Theme Toggle, Case Study Modals, and Navigation.
  */
 

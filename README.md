@@ -1,4 +1,4 @@
-# Harold Mallorca — Developer Portfolio
+# Harold P. Mallorca — Developer Portfolio
 
 Modern, high-performance developer portfolio website engineered with clean semantic HTML5, Tailwind CSS, Lucide Icons, and Vanilla JavaScript.
 
