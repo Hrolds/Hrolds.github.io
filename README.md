@@ -22,7 +22,7 @@ Official portfolio of **Harold P. Mallorca**, Developer and Systems Administrato
 
 ### 📬 Contact Channels
 
-* 📞 **Phone / Mobile:** [`+1 985 925 1674`](tel:19859251674) / `19859251674`
+* 📞 **Phone / Mobile:** [`+0 985 925 1674`](tel:09859251674) / `09859251674`
 * 🌐 **Facebook:** [https://www.facebook.com/KKharold28](https://www.facebook.com/KKharold28)
 * ✉️ **Email:** [hroldmallorca@gmail.com](mailto:hroldmallorca@gmail.com)
 * 💻 **GitHub:** [https://github.com/Hrolds](https://github.com/Hrolds)
