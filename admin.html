@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Studio | Harold P. Mallorca</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #070b14; }
+    ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #334155; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+  <!-- ================= AUTHENTICATION / PIN LOCK OVERLAY ================= -->
+  <div id="authOverlay" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-xl flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl relative overflow-hidden text-center">
+      <div class="absolute -top-24 -right-24 w-48 h-48 bg-brand-500/10 rounded-full blur-3xl"></div>
+      
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-600 to-sky-400 p-0.5 shadow-xl shadow-brand-500/20 mx-auto mb-5">
+        <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center font-mono font-extrabold text-2xl text-brand-400">
+          7641
+        </div>
+      </div>
+
+      <h1 class="text-2xl font-extrabold text-white tracking-tight">Portfolio Studio</h1>
+      <p class="text-xs text-slate-400 font-mono mt-1">Authorized Developer Control Center</p>
+      
+      <form id="authForm" onsubmit="handleAuthSubmit(event)" class="mt-6 space-y-4">
+        <div>
+          <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 text-left mb-1.5">Enter Security PIN / Password</label>
+          <input type="password" id="pinInput" placeholder="Enter PIN (Default: 7641)" autofocus
+            class="w-full bg-slate-950 border border-slate-700 focus:border-brand-500 focus:ring-1 focus:ring-brand-500 text-white rounded-xl px-4 py-3 font-mono text-center tracking-widest text-lg outline-none transition-all">
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white font-semibold text-sm shadow-lg shadow-brand-500/25 transition-all">
+          Unlock Portfolio Studio
+        </button>
+
+        <p class="text-[11px] text-slate-500 font-mono">City Human Resource Management Office (CHRMO) • Harold P. Mallorca</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= TOP NAVBAR ================= -->
+  <header class="sticky top-0 z-30 bg-slate-950/90 backdrop-blur-xl border-b border-slate-800 px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Brand Info -->
+    <div class="flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-2.5 group" title="Return to Live Site">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-sky-400 flex items-center justify-center font-bold text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+          HM
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-sm tracking-wide text-white">Portfolio Studio</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-brand-500/10 text-brand-400 border border-brand-500/20 font-semibold">CMS v2.0</span>
+          </div>
+          <span class="text-[11px] font-mono text-slate-400">Harold P. Mallorca • 7641</span>
+        </div>
+      </a>
+      
+      <!-- Connection Status Pill -->
+      <div id="serverStatusPill" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono bg-slate-900 border border-slate-800 text-slate-400">
+        <span id="serverDot" class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+        <span id="serverText">Checking Server...</span>
+      </div>
+    </div>
+
+    <!-- Right Controls -->
+    <div class="flex items-center gap-2.5">
+      <!-- Live Preview Toggle -->
+      <button type="button" onclick="toggleSplitPreview()" class="px-3.5 py-2 rounded-xl border border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition-colors" title="Toggle Live Preview Pane">
+        <i data-lucide="eye" class="w-4 h-4 text-sky-400"></i>
+        <span class="hidden md:inline">Split Preview</span>
+      </button>
+
+      <!-- Save Button -->
+      <button type="button" onclick="savePortfolioData()" id="saveBtn" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold flex items-center gap-1.5 border border-slate-700 transition-colors">
+        <i data-lucide="save" class="w-4 h-4 text-emerald-400"></i>
+        <span>Save</span>
+      </button>
+
+      <!-- Publish to GitHub Button -->
+      <button type="button" onclick="openPublishModal()" id="publishModalBtn" class="px-4 py-2 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-500 hover:to-brand-400 text-white text-xs font-bold shadow-lg shadow-brand-500/25 flex items-center gap-1.5 transition-all">
+        <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+        <span>Publish to Git</span>
+      </button>
+
+      <!-- Live Site Direct Link -->
+      <a href="https://hrolds.github.io/" target="_blank" rel="noopener noreferrer" class="p-2 rounded-xl border border-slate-800 hover:bg-slate-800 text-slate-400 hover:text-white transition-colors" title="View Live GitHub Pages URL">
+        <i data-lucide="external-link" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- ================= MAIN LAYOUT CONTAINER ================= -->
+  <div class="flex-1 flex overflow-hidden">
+    
+    <!-- LEFT SIDEBAR / TAB NAVIGATION -->
+    <aside class="w-64 bg-slate-950 border-r border-slate-800/80 flex flex-col shrink-0 p-3 overflow-y-auto">
+      <div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 px-3 py-2 font-bold">Studio Sections</div>
+      
+      <nav class="space-y-1">
+        <button onclick="switchTab('profile')" id="tabBtn-profile" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-brand-600/10 text-brand-300 border border-brand-500/20 text-left transition-all">
+          <i data-lucide="user" class="w-4 h-4 text-brand-400 shrink-0"></i>
+          <span>Profile &amp; Identity</span>
+        </button>
+
+        <button onclick="switchTab('contacts')" id="tabBtn-contacts" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-400 hover:bg-slate-900 hover:text-slate-200 text-left transition-all">
+          <i data-lucide="phone-call" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+          <span>Contact Channels</span>
+        </button>
+
+        <button onclick="switchTab('metrics')" id="tabBtn-metrics" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-400 hover:bg-slate-900 hover:text-slate-200 text-left transition-all">
+          <i data-lucide="bar-chart-3" class="w-4 h-4 text-sky-400 shrink-0"></i>
+          <span>Stats &amp; Impact</span>
+        </button>
+
+        <button onclick="switchTab('projects')" id="tabBtn-projects" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-400 hover:bg-slate-900 hover:text-slate-200 text-left transition-all">
+          <i data-lucide="layers" class="w-4 h-4 text-amber-400 shrink-0"></i>
+          <span>Flagship Systems</span>
+          <span id="projectCountBadge" class="ml-auto text-[10px] font-mono bg-slate-800 px-2 py-0.5 rounded-full text-slate-300">3</span>
+        </button>
+
+        <button onclick="switchTab('skills')" id="tabBtn-skills" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-400 hover:bg-slate-900 hover:text-slate-200 text-left transition-all">
+          <i data-lucide="cpu" class="w-4 h-4 text-purple-400 shrink-0"></i>
+          <span>Technical Skills</span>
+        </button>
+
+        <button onclick="switchTab('publish')" id="tabBtn-publish" class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-400 hover:bg-slate-900 hover:text-slate-200 text-left transition-all">
+          <i data-lucide="rocket" class="w-4 h-4 text-brand-400 shrink-0"></i>
+          <span>Publish &amp; Git Engine</span>
+        </button>
+      </nav>
+
+      <!-- Quick Info Box at bottom of sidebar -->
+      <div class="mt-auto pt-4 border-t border-slate-900 text-[11px] text-slate-500 font-mono space-y-1 px-2">
+        <div class="flex justify-between"><span>Branch:</span> <span class="text-slate-300 font-bold" id="sidebarBranch">main</span></div>
+        <div class="flex justify-between"><span>Last Commit:</span> <span class="text-slate-300 truncate max-w-[120px]" id="sidebarCommit">-</span></div>
+        <div class="pt-2 text-center">
+          <a href="index.html" class="text-brand-400 hover:underline flex items-center justify-center gap-1">
+            <i data-lucide="arrow-left" class="w-3 h-3"></i> Return to Site
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER: EDITOR FORMS (SCROLLABLE) -->
+    <main class="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-slate-950/60 max-w-4xl mx-auto w-full">
+
+      <!-- ================= TAB 1: PROFILE & IDENTITY ================= -->
+      <section id="tab-profile" class="tab-pane space-y-6">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <i data-lucide="user" class="w-5 h-5 text-brand-400"></i> Profile &amp; Identity
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">Manage your personal developer credentials, titles, and public hero text.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Full Name -->
+          <div>
+            <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Full Name</label>
+            <input type="text" id="profile_name" class="w-full bg-slate-900 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2.5 text-sm text-white font-medium outline-none">
+          </div>
+
+          <!-- Role / Title -->
+          <div>
+            <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Primary Title</label>
+            <input type="text" id="profile_role" class="w-full bg-slate-900 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2.5 text-sm text-white font-medium outline-none">
+          </div>
+
+          <!-- Employment Position -->
+          <div>
+            <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Current Employment Position</label>
+            <input type="text" id="profile_employmentTitle" class="w-full bg-slate-900 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2.5 text-sm text-white font-medium outline-none">
+          </div>
+
+          <!-- Department / Office -->
+          <div>
+            <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Office / Department</label>
+            <input type="text" id="profile_office" class="w-full bg-slate-900 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2.5 text-sm text-white font-medium outline-none">
+          </div>
+
+          <!-- Location -->
+          <div>
+            <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Location</label>
+            <input type="text" id="profile_location" class="w-full bg-slate-900 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2.5 text-sm text-white font-medium outline-none">
+          </div>
+
+          <!-- Open For / Status -->
+          <div>
+            <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Availability Status Badge</label>
+            <input type="text" id="profile_status" class="w-full bg-slate-900 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2.5 text-sm text-white font-medium outline-none">
+          </div>
+        </div>
+
+        <!-- Focus Statement (Prominent) -->
+        <div class="p-4 rounded-2xl border border-brand-500/30 bg-brand-500/5 space-y-1.5">
+          <label class="block text-xs font-mono font-bold uppercase tracking-wider text-brand-300">Core Professional Focus Statement</label>
+          <textarea id="profile_focusQuote" rows="2" class="w-full bg-slate-900 border border-slate-800 focus:border-brand-500 rounded-xl p-3 text-sm text-white font-medium outline-none"></textarea>
+          <p class="text-[11px] text-slate-400">Featured across the Hero introduction, About card, and Engineering Philosophy.</p>
+        </div>
+
+        <!-- Hero Texts -->
+        <div class="space-y-4">
+          <div>
+            <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Hero Headline</label>
+            <input type="text" id="profile_heroHeadline" class="w-full bg-slate-900 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2.5 text-sm text-white font-medium outline-none">
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Hero Subheading Paragraph</label>
+            <textarea id="profile_heroSubheading" rows="3" class="w-full bg-slate-900 border border-slate-800 focus:border-brand-500 rounded-xl p-3 text-sm text-white font-medium outline-none"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Engineering Philosophy Paragraph</label>
+            <textarea id="profile_philosophyLead" rows="3" class="w-full bg-slate-900 border border-slate-800 focus:border-brand-500 rounded-xl p-3 text-sm text-white font-medium outline-none"></textarea>
+          </div>
+        </div>
+
+        <!-- Profile Avatar Selector -->
+        <div>
+          <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1.5">Profile Photo Asset</label>
+          <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-2xl overflow-hidden border border-slate-700 bg-slate-900 shrink-0">
+              <img id="avatarPreviewImg" src="images/harold-photo.png" alt="Avatar Preview" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1">
+              <select id="profile_avatar" onchange="document.getElementById('avatarPreviewImg').src = this.value" class="w-full bg-slate-900 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2.5 text-sm text-white font-mono outline-none">
+                <option value="images/harold-photo.png">images/harold-photo.png (Harold Mallorca Authentic Portrait)</option>
+                <option value="images/harold.png">images/harold.png (Harold Mallorca High-Res)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 2: CONTACT CHANNELS ================= -->
+      <section id="tab-contacts" class="tab-pane hidden space-y-6">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <i data-lucide="phone-call" class="w-5 h-5 text-emerald-400"></i> Contact &amp; Communication Channels
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">Manage your phone number, Facebook profile, direct email, and GitHub links.</p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Phone Number -->
+          <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
+                <i data-lucide="phone" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-300">Phone / Mobile Number</label>
+                <p class="text-[11px] text-slate-500 font-mono">Enables one-click dialing via tel: link and instant copy</p>
+              </div>
+            </div>
+            <input type="text" id="contact_phone" placeholder="19859251674" class="w-full sm:w-64 bg-slate-950 border border-slate-700 focus:border-emerald-500 rounded-xl px-3.5 py-2 text-sm text-white font-mono outline-none">
+          </div>
+
+          <!-- Facebook URL -->
+          <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center shrink-0">
+                <i data-lucide="facebook" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-300">Facebook Profile Link</label>
+                <p class="text-[11px] text-slate-500 font-mono">Full URL to your official Facebook profile</p>
+              </div>
+            </div>
+            <input type="url" id="contact_facebook" placeholder="https://www.facebook.com/KKharold28" class="w-full sm:w-80 bg-slate-950 border border-slate-700 focus:border-sky-500 rounded-xl px-3.5 py-2 text-sm text-white font-mono outline-none">
+          </div>
+
+          <!-- Email Address -->
+          <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center shrink-0">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-300">Direct Email Address</label>
+                <p class="text-[11px] text-slate-500 font-mono">Forwards inquiries directly via mailto: and clipboard</p>
+              </div>
+            </div>
+            <input type="email" id="contact_email" placeholder="hroldmallorca@gmail.com" class="w-full sm:w-64 bg-slate-950 border border-slate-700 focus:border-brand-500 rounded-xl px-3.5 py-2 text-sm text-white font-mono outline-none">
+          </div>
+
+          <!-- GitHub Profile -->
+          <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-slate-800 text-slate-300 flex items-center justify-center shrink-0">
+                <i data-lucide="github" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <label class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-300">GitHub Profile URL</label>
+                <p class="text-[11px] text-slate-500 font-mono">Showcases open-source and repositories</p>
+              </div>
+            </div>
+            <input type="url" id="contact_github" placeholder="https://github.com/Hrolds" class="w-full sm:w-64 bg-slate-950 border border-slate-700 focus:border-brand-500 rounded-xl px-3.5 py-2 text-sm text-white font-mono outline-none">
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 3: STATS & IMPACT ================= -->
+      <section id="tab-metrics" class="tab-pane hidden space-y-6">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <i data-lucide="bar-chart-3" class="w-5 h-5 text-sky-400"></i> Stats, Metrics &amp; Impact
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">Edit numerical proofs shown in the hero header and achievements section.</p>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider font-mono mb-3">4 Proof Metric Counters (Hero Banner)</h3>
+          <div id="metricsList" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-800/80">
+          <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider font-mono mb-3">Impact Highlight Cards</h3>
+          <div id="impactList" class="space-y-3">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TAB 4: PROJECTS / FLAGSHIP SYSTEMS ================= -->
+      <section id="tab-projects" class="tab-pane hidden space-y-6">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+          <div>
+            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+              <i data-lucide="layers" class="w-5 h-5 text-amber-400"></i> Flagship Enterprise Systems
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5">Manage, edit, or add production systems featured on your portfolio.</p>
+          </div>
+          <button type="button" onclick="addNewProjectModal()" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-emerald-500 hover:from-emerald-500 hover:to-emerald-400 text-white text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-emerald-500/20 transition-all">
+            <i data-lucide="plus" class="w-4 h-4"></i> Add System
+          </button>
+        </div>
+
+        <div id="projectsContainer" class="space-y-6">
+          <!-- Dynamically populated project cards -->
+        </div>
+      </section>
+
+      <!-- ================= TAB 5: SKILLS & TECH STACK ================= -->
+      <section id="tab-skills" class="tab-pane hidden space-y-6">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <i data-lucide="cpu" class="w-5 h-5 text-purple-400"></i> Technical Skills &amp; Stack
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">Add or remove skills and tools across specialized engineering domains.</p>
+        </div>
+
+        <div id="skillsCategoriesContainer" class="space-y-4">
+          <!-- Dynamically populated skill categories -->
+        </div>
+      </section>
+
+      <!-- ================= TAB 6: PUBLISH & GIT ENGINE ================= -->
+      <section id="tab-publish" class="tab-pane hidden space-y-6">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <i data-lucide="rocket" class="w-5 h-5 text-brand-400"></i> Publish to GitHub &amp; Deployment Engine
+          </h2>
+          <p class="text-xs text-slate-400 mt-0.5">Publish your updates directly to git main to deploy live on GitHub Pages.</p>
+        </div>
+
+        <!-- Option 1: Local One-Click Publish (Primary) -->
+        <div class="p-6 rounded-3xl border border-brand-500/30 bg-gradient-to-br from-slate-900 to-slate-950 shadow-xl relative overflow-hidden">
+          <div class="flex items-start justify-between gap-4 mb-4">
+            <div>
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold uppercase tracking-wider">
+                Recommended Local Workflow
+              </span>
+              <h3 class="text-lg font-extrabold text-white mt-2">One-Click Git Push to GitHub Pages</h3>
+              <p class="text-xs text-slate-300 mt-1 max-w-xl">
+                Automatically commits your changes to local git repository and pushes to <code class="text-brand-300">origin/main</code>. GitHub Pages updates automatically within 60 seconds.
+              </p>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-brand-500/10 text-brand-400 flex items-center justify-center shrink-0">
+              <i data-lucide="git-merge" class="w-6 h-6"></i>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div>
+              <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1">Commit Message</label>
+              <input type="text" id="gitCommitMessage" value="update: portfolio content via Studio UI" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2.5 text-xs text-white font-mono outline-none">
+            </div>
+
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <button type="button" onclick="executePublishToGit()" id="executePublishBtn" class="px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 via-sky-500 to-emerald-500 hover:opacity-95 text-white font-bold text-xs shadow-xl shadow-brand-500/25 flex items-center gap-2 transition-all">
+                <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                <span>Publish to GitHub (main)</span>
+              </button>
+
+              <button type="button" onclick="checkGitStatus()" class="px-4 py-3 rounded-xl border border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-mono flex items-center gap-1.5 transition-colors">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Check Git Status
+              </button>
+            </div>
+          </div>
+
+          <!-- Real-Time Console Output -->
+          <div class="mt-5">
+            <div class="flex justify-between items-center text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-1.5">
+              <span>Terminal &amp; Git Output Console</span>
+              <span id="publishStatusIndicator" class="text-slate-500">Ready</span>
+            </div>
+            <div id="gitConsole" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3.5 font-mono text-[11px] text-slate-300 max-h-48 overflow-y-auto whitespace-pre-wrap leading-relaxed">
+[Portfolio Studio Ready] Click 'Publish to GitHub' to commit and push changes.
+            </div>
+          </div>
+        </div>
+
+        <!-- Option 2: Direct GitHub API Web Publish (For when running on GitHub Pages without local server) -->
+        <div class="p-5 rounded-2xl border border-slate-800 bg-slate-900/60 space-y-3">
+          <div class="flex items-center gap-2 text-xs font-bold text-slate-200">
+            <i data-lucide="key" class="w-4 h-4 text-amber-400"></i>
+            <span>Cloud Direct Publish (GitHub Personal Access Token)</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            If you are accessing this Studio directly on the web (<code class="text-slate-300">https://hrolds.github.io/admin.html</code>) without running the local Node server, enter your GitHub Personal Access Token (classic with <code class="text-amber-300">repo</code> scope) to commit directly via the GitHub REST API.
+          </p>
+          <div class="flex gap-2">
+            <input type="password" id="githubTokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx (Stored locally in your browser only)" class="flex-1 bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-xl px-3.5 py-2 text-xs text-white font-mono outline-none">
+            <button type="button" onclick="saveGitHubToken()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold">Save Token</button>
+            <button type="button" onclick="executeCloudPublish()" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold flex items-center gap-1.5">
+              <i data-lucide="cloud-lightning" class="w-3.5 h-3.5"></i> Cloud Push
+            </button>
+          </div>
+        </div>
+
+        <!-- Option 3: Manual Export / Backup -->
+        <div class="p-5 rounded-2xl border border-slate-800 bg-slate-900/40 flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h4 class="text-xs font-bold text-white uppercase tracking-wider font-mono">Backup &amp; Export</h4>
+            <p class="text-xs text-slate-400 mt-0.5">Download your configuration data or raw files anytime.</p>
+          </div>
+          <div class="flex gap-2">
+            <button type="button" onclick="downloadDataJson()" class="px-3.5 py-2 rounded-xl border border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition-colors">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i> Download portfolio-data.json
+            </button>
+            <button type="button" onclick="copyPortfolioJson()" class="px-3.5 py-2 rounded-xl border border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition-colors">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy JSON
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- RIGHT: INTERACTIVE LIVE PREVIEW PANE (COLLAPSIBLE) -->
+    <aside id="previewPane" class="hidden lg:flex flex-col w-[480px] xl:w-[580px] bg-slate-950 border-l border-slate-800 shrink-0">
+      <div class="h-12 border-b border-slate-800 bg-slate-900/80 px-4 flex items-center justify-between text-xs text-slate-300 font-mono">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Live Site Rendering Preview</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="refreshPreviewIframe()" class="p-1 hover:text-white" title="Reload Preview">
+            <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i>
+          </button>
+          <button type="button" onclick="toggleSplitPreview()" class="p-1 hover:text-white" title="Close Preview Pane">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+      <div class="flex-1 bg-slate-950 overflow-hidden relative">
+        <iframe id="livePreviewIframe" src="index.html" class="w-full h-full border-none"></iframe>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ================= EDIT / ADD PROJECT MODAL ================= -->
+  <div id="projectModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden opacity-0 transition-opacity duration-200 flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl relative">
+      <button onclick="closeProjectModal()" class="absolute top-5 right-5 p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <h3 id="projectModalTitle" class="text-xl font-bold text-white mb-4">Edit System Details</h3>
+
+      <form id="projectEditForm" onsubmit="saveProjectModal(event)" class="space-y-4">
+        <input type="hidden" id="pm_id">
+
+        <div>
+          <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1">System Title</label>
+          <input type="text" id="pm_title" required class="w-full bg-slate-950 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2 text-sm text-white font-medium outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1">Subtitle / Organization</label>
+          <input type="text" id="pm_subtitle" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2 text-sm text-white font-medium outline-none">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1">Status Badge Text</label>
+            <input type="text" id="pm_badge" placeholder="Production • Multi-Module Live" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2 text-sm text-white font-medium outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1">Main Image Path</label>
+            <input type="text" id="pm_mainImage" placeholder="images/idmaker-harold.png" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2 text-sm text-white font-mono outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1">Overview Description</label>
+          <textarea id="pm_overview" rows="3" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-500 rounded-xl p-3 text-xs text-white font-medium outline-none"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1">Tech Tags (Comma separated)</label>
+          <input type="text" id="pm_tags" placeholder="Node.js, Express, Python, SQL Server" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-500 rounded-xl px-3.5 py-2 text-xs text-white font-mono outline-none">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-400 mb-1">Live Web URLs (Format: Label | URL, one per line)</label>
+          <textarea id="pm_liveLinks" rows="2" placeholder="Bio-Registration | https://bio-registration.web.app/" class="w-full bg-slate-950 border border-slate-800 focus:border-brand-500 rounded-xl p-3 text-xs text-white font-mono outline-none"></textarea>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-3 border-t border-slate-800">
+          <button type="button" onclick="closeProjectModal()" class="px-4 py-2 rounded-xl border border-slate-800 text-slate-400 hover:text-white text-xs">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-semibold text-xs">Save System</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= TOAST NOTIFICATION CONTAINER ================= -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 border border-brand-500/40 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div id="toastIcon" class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+      <i data-lucide="check" class="w-4 h-4"></i>
+    </div>
+    <div>
+      <div id="toastTitle" class="text-xs font-bold text-white">Saved Successfully</div>
+      <div id="toastMessage" class="text-[11px] text-slate-400">All portfolio assets updated.</div>
+    </div>
+  </div>
+
+  <!-- ================= STUDIO LOGIC SCRIPT ================= -->
+  <script>
+    // Global Portfolio State
+    let portfolioData = null;
+    let isServerConnected = false;
+
+    // --- 1. AUTHENTICATION (DEFAULT PIN: 7641) ---
+    function checkAuth() {
+      const isAuth = sessionStorage.getItem('studio_auth');
+      const authOverlay = document.getElementById('authOverlay');
+      if (isAuth === 'true') {
+        authOverlay.classList.add('hidden');
+      } else {
+        authOverlay.classList.remove('hidden');
+      }
+    }
+
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      const pin = document.getElementById('pinInput').value.trim();
+      // Accepts PIN 7641 or 'admin' or Harold's custom passwords
+      if (pin === '7641' || pin.toLowerCase() === 'admin' || pin.toLowerCase() === 'mallorca') {
+        sessionStorage.setItem('studio_auth', 'true');
+        document.getElementById('authOverlay').classList.add('hidden');
+        showToast('Access Granted', 'Welcome to Portfolio Studio, Harold!', 'check');
+      } else {
+        alert('Invalid PIN. Please enter your authorized PIN (7641).');
+      }
+    }
+
+    // --- 2. DATA INITIALIZATION & SERVER STATUS ---
+    async function initStudio() {
+      checkAuth();
+      if (window.lucide) lucide.createIcons();
+
+      // Check if local node server is reachable
+      try {
+        const res = await fetch('/api/git-status');
+        if (res.ok) {
+          isServerConnected = true;
+          const status = await res.json();
+          document.getElementById('serverDot').className = 'w-2 h-2 rounded-full bg-emerald-400';
+          document.getElementById('serverText').textContent = 'Local Server Online';
+          document.getElementById('sidebarBranch').textContent = status.branch || 'main';
+          document.getElementById('sidebarCommit').textContent = status.lastCommit || 'Latest';
+        }
+      } catch (err) {
+        isServerConnected = false;
+        document.getElementById('serverDot').className = 'w-2 h-2 rounded-full bg-sky-400';
+        document.getElementById('serverText').textContent = 'Static Browser Mode';
+      }
+
+      // Load Portfolio Data
+      await loadPortfolioData();
+      
+      // Load saved GitHub token if available
+      const savedToken = localStorage.getItem('studio_gh_token');
+      if (savedToken) {
+        document.getElementById('githubTokenInput').value = savedToken;
+      }
+    }
+
+    async function loadPortfolioData() {
+      try {
+        // Try server API first, then local json file
+        const endpoint = isServerConnected ? '/api/data' : 'portfolio-data.json';
+        const res = await fetch(endpoint);
+        if (res.ok) {
+          portfolioData = await res.json();
+        } else {
+          throw new Error('Failed to load portfolio-data.json');
+        }
+      } catch (e) {
+        console.warn('Fallback: Initializing default data template', e);
+        // Fallback default
+        portfolioData = { profile: {}, contacts: {}, metrics: [], impactStats: [], projects: [], skills: {} };
+      }
+
+      populateFormFields();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // --- 3. POPULATE FORM FIELDS ---
+    function populateFormFields() {
+      if (!portfolioData) return;
+
+      const p = portfolioData.profile || {};
+      const c = portfolioData.contacts || {};
+
+      // Profile tab
+      document.getElementById('profile_name').value = p.name || '';
+      document.getElementById('profile_role').value = p.role || '';
+      document.getElementById('profile_employmentTitle').value = p.employmentTitle || '';
+      document.getElementById('profile_office').value = p.office || '';
+      document.getElementById('profile_location').value = p.location || '';
+      document.getElementById('profile_status').value = p.status || '';
+      document.getElementById('profile_focusQuote').value = p.focusQuote || '';
+      document.getElementById('profile_heroHeadline').value = p.heroHeadline || '';
+      document.getElementById('profile_heroSubheading').value = p.heroSubheading || '';
+      document.getElementById('profile_philosophyLead').value = p.philosophyLead || '';
+      if (p.avatar) {
+        document.getElementById('profile_avatar').value = p.avatar;
+        document.getElementById('avatarPreviewImg').src = p.avatar;
+      }
+
+      // Contacts tab
+      document.getElementById('contact_phone').value = c.phone || '';
+      document.getElementById('contact_facebook').value = c.facebook || '';
+      document.getElementById('contact_email').value = c.email || '';
+      document.getElementById('contact_github').value = c.github || '';
+
+      // Metrics tab
+      renderMetrics();
+      renderImpactStats();
+
+      // Projects tab
+      renderProjects();
+
+      // Skills tab
+      renderSkills();
+    }
+
+    function renderMetrics() {
+      const container = document.getElementById('metricsList');
+      container.innerHTML = '';
+      (portfolioData.metrics || []).forEach((m, idx) => {
+        container.innerHTML += `
+          <div class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/60 space-y-2">
+            <div class="flex justify-between items-center text-xs font-mono text-brand-400 font-bold">
+              <span>Card #${idx + 1}</span>
+            </div>
+            <div>
+              <label class="block text-[10px] font-mono text-slate-400 uppercase">Value / Stat</label>
+              <input type="text" value="${escapeHtml(m.value)}" onchange="updateMetric(${idx}, 'value', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-mono font-bold">
+            </div>
+            <div>
+              <label class="block text-[10px] font-mono text-slate-400 uppercase">Primary Label</label>
+              <input type="text" value="${escapeHtml(m.label)}" onchange="updateMetric(${idx}, 'label', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white">
+            </div>
+            <div>
+              <label class="block text-[10px] font-mono text-slate-400 uppercase">Subtitle</label>
+              <input type="text" value="${escapeHtml(m.subtitle || '')}" onchange="updateMetric(${idx}, 'subtitle', this.value)" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-400">
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function updateMetric(index, field, val) {
+      if (portfolioData.metrics && portfolioData.metrics[index]) {
+        portfolioData.metrics[index][field] = val;
+      }
+    }
+
+    function renderImpactStats() {
+      const container = document.getElementById('impactList');
+      container.innerHTML = '';
+      (portfolioData.impactStats || []).forEach((item, idx) => {
+        container.innerHTML += `
+          <div class="p-3.5 rounded-xl border border-slate-800 bg-slate-900/60 grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
+            <div class="sm:col-span-3">
+              <label class="block text-[10px] font-mono text-slate-400 uppercase">Stat Value</label>
+              <input type="text" value="${escapeHtml(item.stat)}" onchange="portfolioData.impactStats[${idx}].stat = this.value" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-emerald-400 font-mono font-bold">
+            </div>
+            <div class="sm:col-span-4">
+              <label class="block text-[10px] font-mono text-slate-400 uppercase">Title</label>
+              <input type="text" value="${escapeHtml(item.title)}" onchange="portfolioData.impactStats[${idx}].title = this.value" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-white font-semibold">
+            </div>
+            <div class="sm:col-span-5">
+              <label class="block text-[10px] font-mono text-slate-400 uppercase">Description</label>
+              <input type="text" value="${escapeHtml(item.desc)}" onchange="portfolioData.impactStats[${idx}].desc = this.value" class="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-300">
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function renderProjects() {
+      const container = document.getElementById('projectsContainer');
+      const badge = document.getElementById('projectCountBadge');
+      container.innerHTML = '';
+      
+      const list = portfolioData.projects || [];
+      badge.textContent = list.length;
+
+      list.forEach((proj, idx) => {
+        container.innerHTML += `
+          <div class="p-5 rounded-2xl border border-slate-800 bg-slate-900/80 shadow-lg space-y-4">
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="w-14 h-10 rounded-xl overflow-hidden bg-slate-950 border border-slate-800 shrink-0">
+                  <img src="${escapeHtml(proj.mainImage || 'images/idmaker-harold.png')}" alt="${escapeHtml(proj.title)}" class="w-full h-full object-cover">
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">${escapeHtml(proj.badge || 'Live')}</span>
+                    <h3 class="font-bold text-white text-base">${escapeHtml(proj.title)}</h3>
+                  </div>
+                  <p class="text-xs text-slate-400 truncate max-w-md">${escapeHtml(proj.subtitle || '')}</p>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="editProject(${idx})" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold flex items-center gap-1 transition-colors">
+                  <i data-lucide="edit-3" class="w-3.5 h-3.5 text-brand-400"></i> Edit
+                </button>
+                <button type="button" onclick="deleteProject(${idx})" class="p-1.5 rounded-lg border border-slate-800 hover:bg-red-500/20 text-slate-400 hover:text-red-400 transition-colors" title="Delete System">
+                  <i data-lucide="trash-2" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <p class="text-xs text-slate-300 leading-relaxed bg-slate-950/60 p-3 rounded-xl border border-slate-800/80">
+              ${escapeHtml(proj.overview || '')}
+            </p>
+
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-[11px] font-mono text-slate-400">
+              <div class="flex flex-wrap gap-1">
+                ${(proj.tags || []).map(t => `<span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300">${escapeHtml(t)}</span>`).join('')}
+              </div>
+              <div class="text-brand-400">
+                ${(proj.liveLinks || []).length} Live Links Attached
+              </div>
+            </div>
+          </div>
+        `;
+      });
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function renderSkills() {
+      const container = document.getElementById('skillsCategoriesContainer');
+      container.innerHTML = '';
+      const skills = portfolioData.skills || {};
+
+      const labels = {
+        hardware: 'Hardware & IoT Protocols',
+        backend: 'Backend & Server Frameworks',
+        databases: 'Databases & Cloud Storage',
+        frontend: 'Front-End & UI Engineering',
+        design: 'Creative & Design Suite'
+      };
+
+      for (const [key, list] of Object.entries(skills)) {
+        container.innerHTML += `
+          <div class="p-4 rounded-2xl border border-slate-800 bg-slate-900/60 space-y-2">
+            <div class="flex justify-between items-center">
+              <label class="text-xs font-mono font-bold text-slate-300 uppercase tracking-wider">${labels[key] || key}</label>
+              <button type="button" onclick="addSkillPrompt('${key}')" class="text-[11px] font-mono text-brand-400 hover:underline flex items-center gap-1">
+                <i data-lucide="plus" class="w-3 h-3"></i> Add Skill
+              </button>
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-1">
+              ${list.map((item, idx) => `
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs bg-slate-800 text-slate-200 border border-slate-700">
+                  ${escapeHtml(item)}
+                  <button type="button" onclick="removeSkill('${key}', ${idx})" class="text-slate-400 hover:text-red-400">&times;</button>
+                </span>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function addSkillPrompt(cat) {
+      const val = prompt(`Enter new skill for ${cat}:`);
+      if (val && val.trim()) {
+        portfolioData.skills[cat].push(val.trim());
+        renderSkills();
+      }
+    }
+
+    function removeSkill(cat, index) {
+      portfolioData.skills[cat].splice(index, 1);
+      renderSkills();
+    }
+
+    // --- 4. COLLECT FORM DATA ---
+    function collectCurrentFormData() {
+      const p = portfolioData.profile || {};
+      const c = portfolioData.contacts || {};
+
+      p.name = document.getElementById('profile_name').value.trim();
+      p.role = document.getElementById('profile_role').value.trim();
+      p.employmentTitle = document.getElementById('profile_employmentTitle').value.trim();
+      p.office = document.getElementById('profile_office').value.trim();
+      p.location = document.getElementById('profile_location').value.trim();
+      p.status = document.getElementById('profile_status').value.trim();
+      p.focusQuote = document.getElementById('profile_focusQuote').value.trim();
+      p.heroHeadline = document.getElementById('profile_heroHeadline').value.trim();
+      p.heroSubheading = document.getElementById('profile_heroSubheading').value.trim();
+      p.philosophyLead = document.getElementById('profile_philosophyLead').value.trim();
+      p.avatar = document.getElementById('profile_avatar').value.trim();
+
+      c.phone = document.getElementById('contact_phone').value.trim();
+      c.facebook = document.getElementById('contact_facebook').value.trim();
+      c.email = document.getElementById('contact_email').value.trim();
+      c.github = document.getElementById('contact_github').value.trim();
+
+      portfolioData.profile = p;
+      portfolioData.contacts = c;
+      return portfolioData;
+    }
+
+    // --- 5. SAVE PORTFOLIO DATA ---
+    async function savePortfolioData() {
+      const data = collectCurrentFormData();
+      const saveBtn = document.getElementById('saveBtn');
+      saveBtn.disabled = true;
+      saveBtn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin text-emerald-400"></i> Saving...';
+
+      try {
+        if (isServerConnected) {
+          const res = await fetch('/api/save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const result = await res.json();
+          if (result.success) {
+            showToast('Saved Successfully', 'Saved to portfolio-data.json and index.html', 'check');
+            refreshPreviewIframe();
+          } else {
+            throw new Error(result.error);
+          }
+        } else {
+          // Static Mode: save to localStorage & trigger download/notification
+          localStorage.setItem('portfolio_data_draft', JSON.stringify(data));
+          showToast('Draft Saved in Browser', 'Running in static mode. Use "Publish to Git" to push changes.', 'check');
+        }
+      } catch (err) {
+        alert('Failed to save portfolio: ' + err.message);
+      } finally {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<i data-lucide="save" class="w-4 h-4 text-emerald-400"></i> Save';
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    // --- 6. PUBLISH TO GITHUB ENGINE ---
+    function openPublishModal() {
+      switchTab('publish');
+    }
+
+    async function executePublishToGit() {
+      // Step 1: Save first
+      await savePortfolioData();
+
+      const btn = document.getElementById('executePublishBtn');
+      const consoleEl = document.getElementById('gitConsole');
+      const indicator = document.getElementById('publishStatusIndicator');
+      const message = document.getElementById('gitCommitMessage').value.trim() || 'update: portfolio content via Studio UI';
+
+      btn.disabled = true;
+      btn.innerHTML = '<i data-lucide="loader" class="w-4 h-4 animate-spin"></i> Pushing to GitHub...';
+      indicator.textContent = 'Pushing to main...';
+      indicator.className = 'text-amber-400 animate-pulse';
+
+      consoleEl.textContent = `[Git Engine Initiated] Committing and pushing to origin/main...\n`;
+
+      try {
+        if (isServerConnected) {
+          const res = await fetch('/api/publish', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
+          });
+          const result = await res.json();
+
+          if (result.success) {
+            consoleEl.textContent += `\n[Git Add]: Complete\n[Git Commit]: ${result.commitMessage} (${result.commitHash})\n${result.logs.commit || ''}\n[Git Push]: Successfully pushed to main!\n${result.logs.push || ''}\n[Live Status]: Deployed to https://hrolds.github.io/`;
+            indicator.textContent = '✓ Published Live';
+            indicator.className = 'text-emerald-400 font-bold';
+            showToast('Published Live!', 'Pushed to GitHub main! Live site updating at hrolds.github.io', 'upload-cloud');
+          } else {
+            consoleEl.textContent += `\n[Warning / Git Response]:\n${result.logs ? result.logs.commit + '\n' + result.logs.push : result.error}`;
+            indicator.textContent = 'Completed with notes';
+            indicator.className = 'text-amber-400 font-bold';
+          }
+        } else {
+          // If in static web mode, prompt for Cloud Publish
+          consoleEl.textContent += `[Note] Local node server is not detected on this browser session.\nTo push without tokens, run 'node admin-server.js' locally.\nAlternatively, use Cloud Direct Push with your GitHub Access Token below.`;
+          executeCloudPublish();
+        }
+      } catch (err) {
+        consoleEl.textContent += `\n[Error]: ${err.message}`;
+        indicator.textContent = 'Error during publish';
+        indicator.className = 'text-red-400 font-bold';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i data-lucide="upload-cloud" class="w-4 h-4"></i> Publish to GitHub (main)';
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    async function checkGitStatus() {
+      const consoleEl = document.getElementById('gitConsole');
+      consoleEl.textContent = 'Checking repository status...\n';
+      try {
+        const res = await fetch('/api/git-status');
+        const data = await res.json();
+        consoleEl.textContent = `Branch: ${data.branch}\nLast Commit: ${data.lastCommit}\nRemote: ${data.remote}\nStatus: ${data.clean ? 'Working tree clean' : data.statusText}`;
+      } catch (err) {
+        consoleEl.textContent = 'Error checking git status: ' + err.message;
+      }
+    }
+
+    // Cloud GitHub API Push
+    function saveGitHubToken() {
+      const token = document.getElementById('githubTokenInput').value.trim();
+      if (token) {
+        localStorage.setItem('studio_gh_token', token);
+        showToast('Token Saved', 'GitHub Token saved securely in browser storage.', 'check');
+      }
+    }
+
+    async function executeCloudPublish() {
+      const token = document.getElementById('githubTokenInput').value.trim() || localStorage.getItem('studio_gh_token');
+      if (!token) {
+        alert('Please enter your GitHub Personal Access Token to commit directly from the browser, OR run the local admin server (npm start).');
+        return;
+      }
+
+      const consoleEl = document.getElementById('gitConsole');
+      consoleEl.textContent += `\n[Cloud API]: Connecting to api.github.com/repos/Hrolds/Hrolds.github.io/...\n`;
+
+      try {
+        const data = collectCurrentFormData();
+        const contentStr = JSON.stringify(data, null, 2);
+        const encodedContent = btoa(unescape(encodeURIComponent(contentStr)));
+
+        // Get current SHA of portfolio-data.json
+        const fileRes = await fetch('https://api.github.com/repos/Hrolds/Hrolds.github.io/contents/portfolio-data.json', {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        let sha = null;
+        if (fileRes.ok) {
+          const fileInfo = await fileRes.json();
+          sha = fileInfo.sha;
+        }
+
+        // Put updated content
+        const putRes = await fetch('https://api.github.com/repos/Hrolds/Hrolds.github.io/contents/portfolio-data.json', {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: 'update: portfolio-data.json via Cloud Studio',
+            content: encodedContent,
+            sha: sha || undefined
+          })
+        });
+
+        if (putRes.ok) {
+          consoleEl.textContent += `\n[Success]: portfolio-data.json updated on GitHub via REST API! GitHub Pages is building live.`;
+          showToast('Cloud Publish Success', 'Pushed directly to GitHub API!', 'cloud-lightning');
+        } else {
+          const errData = await putRes.json();
+          throw new Error(errData.message || 'GitHub API returned error');
+        }
+      } catch (err) {
+        consoleEl.textContent += `\n[Cloud Push Error]: ${err.message}`;
+        alert('Cloud Publish Failed: ' + err.message);
+      }
+    }
+
+    // --- 7. PROJECT MODAL (EDIT / ADD) ---
+    function editProject(index) {
+      const proj = portfolioData.projects[index];
+      if (!proj) return;
+
+      document.getElementById('projectModalTitle').textContent = `Edit System: ${proj.title}`;
+      document.getElementById('pm_id').value = proj.id || `proj-${index}`;
+      document.getElementById('pm_title').value = proj.title || '';
+      document.getElementById('pm_subtitle').value = proj.subtitle || '';
+      document.getElementById('pm_badge').value = proj.badge || '';
+      document.getElementById('pm_mainImage').value = proj.mainImage || '';
+      document.getElementById('pm_overview').value = proj.overview || '';
+      document.getElementById('pm_tags').value = (proj.tags || []).join(', ');
+      
+      const linksStr = (proj.liveLinks || []).map(l => `${l.label} | ${l.url}`).join('\n');
+      document.getElementById('pm_liveLinks').value = linksStr;
+
+      openProjectModal();
+    }
+
+    function addNewProjectModal() {
+      document.getElementById('projectModalTitle').textContent = 'Add New Enterprise System';
+      document.getElementById('pm_id').value = 'new-' + Date.now();
+      document.getElementById('pm_title').value = '';
+      document.getElementById('pm_subtitle').value = 'City Government of Baguio';
+      document.getElementById('pm_badge').value = 'Production • Live';
+      document.getElementById('pm_mainImage').value = 'images/idmaker-harold.png';
+      document.getElementById('pm_overview').value = '';
+      document.getElementById('pm_tags').value = 'JavaScript, Node.js, SQL';
+      document.getElementById('pm_liveLinks').value = '';
+
+      openProjectModal();
+    }
+
+    function saveProjectModal(e) {
+      e.preventDefault();
+      const id = document.getElementById('pm_id').value;
+      const title = document.getElementById('pm_title').value.trim();
+      const subtitle = document.getElementById('pm_subtitle').value.trim();
+      const badge = document.getElementById('pm_badge').value.trim();
+      const mainImage = document.getElementById('pm_mainImage').value.trim();
+      const overview = document.getElementById('pm_overview').value.trim();
+      const tags = document.getElementById('pm_tags').value.split(',').map(t => t.trim()).filter(Boolean);
+
+      const liveLinks = document.getElementById('pm_liveLinks').value
+        .split('\n')
+        .map(line => {
+          const parts = line.split('|');
+          if (parts.length >= 2) {
+            return { label: parts[0].trim(), url: parts[1].trim() };
+          }
+          return null;
+        })
+        .filter(Boolean);
+
+      const existingIndex = (portfolioData.projects || []).findIndex(p => p.id === id);
+      const projectObj = {
+        id,
+        title,
+        subtitle,
+        badge,
+        mainImage,
+        overview,
+        tags,
+        liveLinks,
+        modules: existingIndex >= 0 ? (portfolioData.projects[existingIndex].modules || []) : []
+      };
+
+      if (existingIndex >= 0) {
+        portfolioData.projects[existingIndex] = { ...portfolioData.projects[existingIndex], ...projectObj };
+      } else {
+        portfolioData.projects.push(projectObj);
+      }
+
+      renderProjects();
+      closeProjectModal();
+      showToast('System Updated', `${title} updated in project list.`, 'check');
+    }
+
+    function deleteProject(index) {
+      const proj = portfolioData.projects[index];
+      if (confirm(`Are you sure you want to delete "${proj.title}"?`)) {
+        portfolioData.projects.splice(index, 1);
+        renderProjects();
+        showToast('System Deleted', 'Removed from portfolio projects.', 'trash-2');
+      }
+    }
+
+    function openProjectModal() {
+      const m = document.getElementById('projectModal');
+      m.classList.remove('hidden');
+      setTimeout(() => { m.classList.remove('opacity-0'); }, 10);
+    }
+
+    function closeProjectModal() {
+      const m = document.getElementById('projectModal');
+      m.classList.add('opacity-0');
+      setTimeout(() => { m.classList.add('hidden'); }, 200);
+    }
+
+    // --- 8. UI HELPERS & TABS ---
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+
+      document.querySelectorAll('aside nav button').forEach(b => {
+        b.className = 'w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-400 hover:bg-slate-900 hover:text-slate-200 text-left transition-all';
+      });
+      const activeBtn = document.getElementById(`tabBtn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.className = 'w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-brand-600/10 text-brand-300 border border-brand-500/20 text-left transition-all';
+      }
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function toggleSplitPreview() {
+      const p = document.getElementById('previewPane');
+      p.classList.toggle('hidden');
+      p.classList.toggle('lg:flex');
+    }
+
+    function refreshPreviewIframe() {
+      const iframe = document.getElementById('livePreviewIframe');
+      if (iframe) iframe.src = 'index.html?t=' + Date.now();
+    }
+
+    function showToast(title, msg, iconName = 'check') {
+      const t = document.getElementById('toast');
+      document.getElementById('toastTitle').textContent = title;
+      document.getElementById('toastMessage').textContent = msg;
+      t.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        t.classList.add('translate-y-20', 'opacity-0');
+      }, 4000);
+    }
+
+    function downloadDataJson() {
+      const data = collectCurrentFormData();
+      const str = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data, null, 2));
+      const a = document.createElement('a');
+      a.setAttribute('href', str);
+      a.setAttribute('download', 'portfolio-data.json');
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    function copyPortfolioJson() {
+      const data = collectCurrentFormData();
+      navigator.clipboard.writeText(JSON.stringify(data, null, 2));
+      showToast('Copied to Clipboard', 'portfolio-data.json copied to clipboard', 'copy');
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', initStudio);
+  </script>
+</body>
+</html>

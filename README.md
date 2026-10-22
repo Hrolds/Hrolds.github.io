@@ -66,14 +66,37 @@ A unified enterprise platform serving municipal personnel timekeeping, high-defi
 
 ---
 
+## ⚡ Portfolio Studio (Visual CMS & One-Click Publishing)
+
+The portfolio includes an administrative management center (**Portfolio Studio**) to visually update credentials, contact info, metrics, systems, and skills without writing raw code.
+
+* **Security PIN:** `7641` (Authorized Developer PIN)
+* **Live Studio Link:** [https://hrolds.github.io/admin.html](https://hrolds.github.io/admin.html)
+* **Local Studio Link:** `http://localhost:3000/admin.html`
+* **Keyboard Shortcut:** Press `Ctrl + Shift + E` or `Alt + A` on the portfolio to open Studio.
+
+### Features
+1. **Profile & Identity Editor:** Update titles, municipal positions, availability status, and professional focus statements.
+2. **Contact Channels Manager:** Edit phone numbers, Facebook URLs, email addresses, and GitHub handles with automated tel/mailto links.
+3. **Metrics & Impact:** Modify real-time statistics and headline numbers.
+4. **Flagship Systems CMS:** Add, edit, or remove enterprise systems with custom tags, screenshots, and live application URLs.
+5. **Split Live Preview:** Real-time side-by-side rendering pane showing changes instantly.
+6. **One-Click Git Push:** Click **"Publish to GitHub (main)"** to automatically run `git add .`, `git commit -m "..."`, and `git push origin main` locally, or commit directly via GitHub REST API.
+
+---
+
 ## 📁 Repository Structure
 
 ```
 portfolio/
 ├── .nojekyll                 # Bypasses Jekyll processing on GitHub Pages
 ├── index.html                # Main semantic HTML5 portfolio document
-├── script.js                 # Theme toggle, interactive modals, and preview switchers
+├── script.js                 # Theme toggle, interactive modals, preview switchers & hydration
 ├── style.css                 # Custom styles, glow effects, and transitions
+├── admin.html                # Portfolio Studio (Visual CMS with Live Preview & Git Push)
+├── admin-server.js           # Lightweight local Node.js server with Git Publishing Engine
+├── portfolio-data.json       # Central structured JSON data source for portfolio content
+├── package.json              # NPM scripts (npm start, npm run publish)
 ├── README.md                 # Project documentation (this file)
 ├── Documents/
 │   ├── Biography.docx        # Official Applicant Biography & Technical Profile (.docx)
@@ -97,6 +120,7 @@ portfolio/
 ## 💻 Tech Stack
 
 * **Front-End:** HTML5, Tailwind CSS, Vanilla JavaScript (ES6+), Lucide Icons
+* **CMS & Publishing:** Node.js native HTTP server, child_process Git CLI, GitHub REST API
 * **Languages & Frameworks:** C#, Blazor (Server/WebAssembly), MudBlazor, Node.js, Express, Python
 * **Databases:** Microsoft SQL Server (T-SQL), PostgreSQL, Supabase, Google Cloud Firestore, Firebase Hosting
 * **Hardware Protocols:** ZKTeco Standalone Push SDK (Socket TCP 4370), Wacom SigCaptX SDK (STU-540)
@@ -104,24 +128,25 @@ portfolio/
 
 ---
 
-## 🚀 How to Run Locally
+## 🚀 How to Run & Publish Locally
 
-You can preview the portfolio locally with any static web server:
+### Option A: Portfolio Studio with Automatic Git Publishing (Recommended)
+```bash
+npm start
+# or: node admin-server.js
+```
+* **Live Site:** `http://localhost:3000/`
+* **Portfolio Studio (CMS):** `http://localhost:3000/admin.html`
+* Any changes made in the Studio can be published live with one click via the **"Publish to GitHub"** button!
 
-### Option A: Using Python (Built-in)
+### Option B: Quick Static Server
 ```bash
 python -m http.server 3000
-```
-Then open `http://localhost:3000` in your web browser.
-
-### Option B: Using Node.js / npx
-```bash
-npx serve .
 ```
 
 ---
 
 ## 📄 License & Attribution
 
-MIT License © 2026 **Harold P. Mallorca**. All rights reserved.
+MIT License © 2026 **Harold P. Mallorca**. All rights reserved.  
 Official documents and credentials can be referenced in [`Documents/Biography.md`](Documents/Biography.md) and [`Documents/Biography.docx`](Documents/Biography.docx).

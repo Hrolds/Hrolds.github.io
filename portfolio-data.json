@@ -1,0 +1,289 @@
+{
+  "profile": {
+    "name": "Harold P. Mallorca",
+    "role": "Developer",
+    "employmentTitle": "Systems Administrator Assistant",
+    "office": "City Human Resource Management Office (CHRMO) • Baguio City Hall",
+    "location": "Baguio City, Philippines",
+    "status": "Open for Systems & Full-Stack Projects",
+    "tenure": "October 27, 2022 – Present (4 Years Continuous Service)",
+    "education": "3 Years Diploma in Computer Science (Informatics Baguio) • BSIT Applicant via ETEEAP",
+    "avatar": "images/harold-photo.png",
+    "focusQuote": "Focused on customizing and automating software solutions to meet company needs and improve daily operations.",
+    "heroHeadline": "Engineering Mission-Critical Enterprise Systems & Hardware Bridges.",
+    "heroSubheading": "Hi, I'm Harold P. Mallorca, a Developer and Systems Administrator Assistant at the City Human Resource Management Office (CHRMO) • Baguio City Hall. Focused on customizing and automating software solutions to meet company needs and improve daily operations.",
+    "philosophyLead": "Focused on customizing and automating software solutions to meet company needs and improve daily operations. When municipal departments need reliable biometric verification, instant daily time record computation, or strict contractual compensation indexing, I architect systems that work reliably under heavy production loads."
+  },
+  "contacts": {
+    "phone": "19859251674",
+    "phoneFormatted": "+1 (985) 925-1674",
+    "facebook": "https://www.facebook.com/KKharold28",
+    "facebookDisplay": "facebook.com/KKharold28",
+    "email": "hroldmallorca@gmail.com",
+    "github": "https://github.com/Hrolds",
+    "githubDisplay": "github.com/Hrolds",
+    "website": "https://hrolds.github.io/"
+  },
+  "metrics": [
+    {
+      "id": "metric-1",
+      "value": "4,600+",
+      "label": "Personnel Managed",
+      "subtitle": "Active municipal records"
+    },
+    {
+      "id": "metric-2",
+      "value": "44 Stations",
+      "label": "Biometric Terminals",
+      "subtitle": "D01–D43 + HR Station"
+    },
+    {
+      "id": "metric-3",
+      "value": "Hardware",
+      "label": "ZKTeco & Wacom IoT",
+      "subtitle": "Direct TCP/IP & USB SDK"
+    },
+    {
+      "id": "metric-4",
+      "value": "Hybrid",
+      "label": "SQL + Supabase + Cloud",
+      "subtitle": "Resilient zero-LAN sync"
+    }
+  ],
+  "impactStats": [
+    {
+      "id": "impact-1",
+      "stat": "1.27s",
+      "title": "1,970+ Users Synced",
+      "desc": "Engineered single-socket TCP/IP daemon polling registers across local physical devices."
+    },
+    {
+      "id": "impact-2",
+      "stat": "354 Profiles",
+      "title": "Job Order Deduplication",
+      "desc": "Consolidated 1,689 disparate records across 27 municipal departments into standard salary tranches."
+    },
+    {
+      "id": "impact-3",
+      "stat": "Zero Overwrite",
+      "title": "Concurrency Safety",
+      "desc": "Implemented optimistic version locking preventing simultaneous administrative edit collisions."
+    }
+  ],
+  "projects": [
+    {
+      "id": "biomsys",
+      "featured": true,
+      "badge": "Production • Multi-Module Live",
+      "badgeColor": "emerald",
+      "title": "BiomSys Registration System",
+      "subtitle": "City Government of Baguio — City Human Resource Management Office (CHRMO)",
+      "overview": "The primary municipal biometric timekeeping, identity issuance, and hardware terminal fleet management ecosystem for the City of Baguio. Built to bridge on-premises local SQL Server security with zero-LAN cloud staging and physical IoT hardware peripherals.",
+      "mainImage": "images/idmaker-harold.png",
+      "mainCaption": "ID Maker Studio — Profile & Signature Editor (Harold Mallorca • 7641)",
+      "gallery": [
+        {
+          "id": "idmaker",
+          "title": "ID Maker Studio",
+          "src": "images/idmaker-harold.png",
+          "caption": "ID Maker Studio — Profile & Signature Editor (Harold Mallorca • 7641)"
+        },
+        {
+          "id": "zkteco",
+          "title": "ZKTeco Biometrics Hologram",
+          "src": "images/zkteco-hologram.png",
+          "caption": "ZKTeco MB560-VL Biometrics — Hologram Facial & Hand Biometrics HUD (Harold Mallorca • 7641)"
+        },
+        {
+          "id": "reports",
+          "title": "Biometric Reports Manager",
+          "src": "images/biometric-reports-manager.png",
+          "caption": "Biometric Reports Manager — 44 Municipal Stations Fleet Control (D01–D43 + HR)"
+        },
+        {
+          "id": "reg",
+          "title": "Registration Form (Public)",
+          "src": "images/bio-registration-public.png",
+          "caption": "Personnel Biometric Registration Form (bio-registration.web.app)"
+        },
+        {
+          "id": "incident",
+          "title": "Incident Reporting (Public)",
+          "src": "images/biometric-incident-public.png",
+          "caption": "Biometric Incident Reporting Form (biometric-incident-report.web.app)"
+        },
+        {
+          "id": "wacom",
+          "title": "Wacom Signature Bridge",
+          "src": "images/wacom-signature-bridge.png",
+          "caption": "Wacom STU-540 Tablet Signature Bridge"
+        }
+      ],
+      "liveLinks": [
+        {
+          "label": "Bio-Registration",
+          "url": "https://bio-registration.web.app/"
+        },
+        {
+          "label": "Incident Reports",
+          "url": "https://biometric-incident-report.web.app/"
+        }
+      ],
+      "modules": [
+        {
+          "title": "1. ID System Suite",
+          "desc": "ID Regular: Employee badges with Wacom STU-540 signatures & SFTP sync. OJT ID: Trainee lifecycle with 5-tier fuzzy matching for emergency contacts. Design & PVC: 8-point interactive layout editor (layout.json) & dual-side PVC cards."
+        },
+        {
+          "title": "2. ZKTeco Terminal IoT",
+          "desc": "Direct TCP/IP socket daemon (port 4370) pulling 1,970+ users in 1.27s. 128-D Visible Light Facial AI mesh & SilkID 10-slot fingerprint radar matrix. Device flash user photo sync (0x271A / 0x2719)."
+        },
+        {
+          "title": "3. Biometric Registration",
+          "desc": "Internal Core: Canonical LAN SQL Server Masterlist with pull-and-delete sync. Public Portal: bio-registration.web.app wizard with appointment attachment rules & Supabase RLS."
+        },
+        {
+          "title": "4. Reports & Fleet Manager",
+          "desc": "44 Municipal Stations (D01–D43 + HR): City Hall, district clinics & external offices. Public Form: biometric-incident-report.web.app. Management Engine: Verification workflows & official HRMO letterhead print engine."
+        }
+      ],
+      "tags": [
+        "Node.js",
+        "Express",
+        "Python (PyZK)",
+        "MS SQL Server",
+        "Supabase",
+        "Firebase",
+        "Wacom SigCaptX",
+        "Canvas API"
+      ]
+    },
+    {
+      "id": "joborder",
+      "featured": true,
+      "badge": "Production • Live in Department",
+      "badgeColor": "emerald",
+      "title": "Job Order Management System",
+      "subtitle": "City Government of Baguio — Position Standardization & Tranche Review",
+      "overview": "An administrative and financial governance platform built to standardize contractual positions, maintain Section 6.x duties & functions, and review compensation according to National Salary Tranches. Live in production at jo-classification.web.app.",
+      "mainImage": "images/joborder-portal.png",
+      "mainCaption": "Job Order Renewal Portal — Managing Position Classifications, Contract Evaluations & Planning",
+      "gallery": [
+        {
+          "id": "portal",
+          "title": "Job Order Portal",
+          "src": "images/joborder-portal.png",
+          "caption": "Job Order Portal — Contract Evaluation & Planning"
+        },
+        {
+          "id": "workflow",
+          "title": "Workflow Navigation",
+          "src": "images/joborder-workflow.png",
+          "caption": "Baguio HR — Job Order Workflow & Approvals Navigation"
+        }
+      ],
+      "liveLinks": [
+        {
+          "label": "jo-classification.web.app",
+          "url": "https://jo-classification.web.app/"
+        }
+      ],
+      "keyPillars": [
+        "HRIS Audit & Deduplication: Consolidated 1,689 records into 354 standardized composite profiles.",
+        "Section 6.x Duties Editor: Real-time rich text editor for municipal contract duties with version locking.",
+        "Salary Tranche Calculator: Automated daily wage rate computation adhering to National DBM Tranches + 20% premium.",
+        "Dual-Mode Hybrid Cloud Sync: Bi-directional synchronization between local SQL Server and Cloud Firestore."
+      ],
+      "tags": [
+        "JavaScript",
+        "Cloud Firestore",
+        "Tailwind CSS",
+        "MS SQL Server",
+        "REST API",
+        "PDF Export"
+      ]
+    },
+    {
+      "id": "move",
+      "featured": true,
+      "badge": "Active Development • Baguio Chapter",
+      "badgeColor": "amber",
+      "title": "M.O.V.E. HRIS Platform",
+      "subtitle": "Men Opposed to Violence Against Women Everywhere — Executive Management System",
+      "overview": "A specialized human resource information system and executive dashboard engineered for the Baguio City Chapter of M.O.V.E., managing member registries, departmental deployment metrics, and institutional governance.",
+      "mainImage": "images/move-dashboard.png",
+      "mainCaption": "M.O.V.E. Baguio Chapter — Executive Management Information System & Dashboard",
+      "gallery": [
+        {
+          "id": "dashboard",
+          "title": "MOVE Dashboard",
+          "src": "images/move-dashboard.png",
+          "caption": "M.O.V.E. Baguio Chapter — Executive Dashboard"
+        },
+        {
+          "id": "logo",
+          "title": "MOVE Chapter Logo",
+          "src": "images/move-logo.png",
+          "caption": "MOVE Baguio Chapter — Official Seal & Insignia"
+        }
+      ],
+      "liveLinks": [
+        {
+          "label": "Local Dashboard Preview",
+          "url": "file:///C:/Users/ALOD/Documents/MOVE/index.html"
+        }
+      ],
+      "keyPillars": [
+        "Executive Metric Cards: Real-time statistical counters tracking 382 active chapter members across 18 municipal offices.",
+        "Departmental Distribution Matrix: Interactive bar and chart breakdowns analyzing member density per department.",
+        "Chapter Governance Roster: Comprehensive dossiers for 2026 Administration (Pres. Dan Ricky M. Ong) & 2025 Administration (Past Pres. Harold Mallorca).",
+        "Institutional Advocacy Records: Structured tracking of civic operations, committee designations, and city certifications."
+      ],
+      "tags": [
+        "HTML5",
+        "CSS3 / Modern Glass",
+        "Vanilla JavaScript",
+        "Chart.js",
+        "Executive MIS"
+      ]
+    }
+  ],
+  "skills": {
+    "hardware": [
+      "ZKTeco Standalone Push SDK (Port 4370)",
+      "Wacom SigCaptX STU-540 Tablet",
+      "LAN/WLAN Subnet & Router Config",
+      "Biometric Flash Photo Protocol (0x271A)"
+    ],
+    "backend": [
+      "Node.js & Express API",
+      "C# .NET & ASP.NET Core",
+      "Blazor (Server & WebAssembly)",
+      "MudBlazor UI Framework",
+      "Python Socket Daemons (PyZK)"
+    ],
+    "databases": [
+      "Microsoft SQL Server (T-SQL)",
+      "PostgreSQL",
+      "Supabase (Database, Auth & RLS)",
+      "Google Cloud Firestore",
+      "Firebase Hosting",
+      "Navicat Enterprise"
+    ],
+    "frontend": [
+      "Tailwind CSS & Modern Utility Styling",
+      "Semantic HTML5 & HTML5 Canvas API",
+      "Vanilla JavaScript (ES6+ Modules)",
+      "Lucide SVG Vector Icons",
+      "PDF.js Document Rendering"
+    ],
+    "design": [
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Adobe Premiere Pro",
+      "Adobe After Effects",
+      "Adobe Lightroom",
+      "Canva & Figma"
+    ]
+  }
+}

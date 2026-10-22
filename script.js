@@ -341,3 +341,100 @@ if (modalBackdrop) {
     }
   });
 }
+
+// --- 7. KEYBOARD SHORTCUT FOR PORTFOLIO STUDIO (Ctrl+Shift+E or Alt+A) ---
+window.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'e') || (e.altKey && e.key.toLowerCase() === 'a')) {
+    e.preventDefault();
+    window.location.href = 'admin.html';
+  }
+});
+
+// --- 8. CLIENT HYDRATION FROM portfolio-data.json ---
+async function hydratePortfolio() {
+  try {
+    const res = await fetch('portfolio-data.json?t=' + Date.now());
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data) return;
+
+    // Hydrate Profile
+    if (data.profile) {
+      const p = data.profile;
+      if (p.name) document.querySelectorAll('[data-field="profile-name"]').forEach(el => el.textContent = p.name);
+      if (p.role) document.querySelectorAll('[data-field="profile-role"]').forEach(el => el.textContent = p.role);
+      if (p.employmentTitle) document.querySelectorAll('[data-field="profile-employmentTitle"]').forEach(el => el.textContent = p.employmentTitle);
+      if (p.office) document.querySelectorAll('[data-field="profile-office"]').forEach(el => el.textContent = p.office);
+      if (p.location) document.querySelectorAll('[data-field="profile-location"]').forEach(el => el.textContent = p.location);
+      if (p.status) document.querySelectorAll('[data-field="profile-status"]').forEach(el => el.textContent = p.status);
+      if (p.focusQuote) document.querySelectorAll('[data-field="profile-focusQuote"]').forEach(el => el.textContent = p.focusQuote);
+      if (p.avatar) {
+        document.querySelectorAll('[data-field="profile-avatar"]').forEach(img => {
+          img.src = p.avatar;
+        });
+      }
+    }
+
+    // Hydrate Contacts
+    if (data.contacts) {
+      const c = data.contacts;
+      if (c.phone) {
+        document.querySelectorAll('[data-field="contact-phone"]').forEach(el => el.textContent = c.phone);
+        document.querySelectorAll('[data-field="contact-phone-link"]').forEach(el => el.href = `tel:${c.phone}`);
+        document.querySelectorAll('a[href^="tel:"]').forEach(el => {
+          el.href = `tel:${c.phone}`;
+          const span = el.querySelector('span');
+          if (span && /^\d+$/.test(span.textContent.trim())) span.textContent = c.phone;
+        });
+      }
+      if (c.facebook) {
+        document.querySelectorAll('[data-field="contact-facebook-link"]').forEach(el => el.href = c.facebook);
+        document.querySelectorAll('[data-field="contact-facebook-text"]').forEach(el => {
+          el.textContent = c.facebook.replace(/^https?:\/\/(www\.)?facebook\.com\/?/, 'facebook.com/');
+        });
+        document.querySelectorAll('a[href*="facebook.com"]').forEach(el => el.href = c.facebook);
+      }
+      if (c.email) {
+        document.querySelectorAll('[data-field="contact-email"]').forEach(el => el.textContent = c.email);
+        document.querySelectorAll('[data-field="contact-email-link"]').forEach(el => el.href = `mailto:${c.email}`);
+        document.querySelectorAll('a[href^="mailto:"]').forEach(el => el.href = `mailto:${c.email}`);
+      }
+    }
+
+    // Hydrate Metrics
+    if (data.metrics && Array.isArray(data.metrics)) {
+      data.metrics.forEach((m, idx) => {
+        const valEl = document.getElementById(`metric-val-${idx}`);
+        const lblEl = document.getElementById(`metric-lbl-${idx}`);
+        if (valEl && m.value) valEl.textContent = m.value;
+        if (lblEl && m.label) lblEl.textContent = m.label;
+      });
+    }
+
+    // Sync Case Studies with edited project data
+    if (data.projects && Array.isArray(data.projects)) {
+      data.projects.forEach(proj => {
+        if (proj.id && caseStudies[proj.id]) {
+          if (proj.title) caseStudies[proj.id].title = proj.title;
+          if (proj.subtitle) caseStudies[proj.id].subtitle = proj.subtitle;
+          if (proj.overview) caseStudies[proj.id].overview = proj.overview;
+          if (proj.badge) caseStudies[proj.id].badge = proj.badge;
+          if (proj.tags) caseStudies[proj.id].techStack = proj.tags;
+        }
+      });
+    }
+
+    if (window.lucide) {
+      lucide.createIcons();
+    }
+  } catch (err) {
+    // Graceful fallback to static pre-rendered markup
+  }
+}
+
+// Hydrate on load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', hydratePortfolio);
+} else {
+  hydratePortfolio();
+}

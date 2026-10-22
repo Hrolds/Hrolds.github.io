@@ -1,0 +1,22 @@
+{
+  "name": "harold-mallorca-portfolio",
+  "version": "2.0.0",
+  "description": "Enterprise developer portfolio and Portfolio Studio CMS for Harold P. Mallorca",
+  "main": "admin-server.js",
+  "scripts": {
+    "start": "node admin-server.js",
+    "admin": "node admin-server.js",
+    "server": "node admin-server.js",
+    "publish": "git add . && git commit -m \"update portfolio\" && git push origin main"
+  },
+  "keywords": [
+    "portfolio",
+    "developer",
+    "systems-administrator",
+    "biometrics",
+    "zkteco",
+    "baguio-city"
+  ],
+  "author": "Harold P. Mallorca",
+  "license": "MIT"
+}
